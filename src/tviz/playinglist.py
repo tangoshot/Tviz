@@ -26,6 +26,11 @@ class Playlist(object):
         return self._index + 1
     
     def tags(self, index):
+        '''
+        returns none for missing tags
+        '''
+        
+        
         return self._index2tags(index)
 
     def keyTags(self, key):
@@ -33,8 +38,15 @@ class Playlist(object):
 
     def _index2tags(self, index):
         key= self._index2key(index)
-        tags = self._tagdb[key]
-        return tags
+        tags = self._tagdb [key]
+        
+        out = {}
+        for tagname in IMPORTED_TAG_NAMES:
+            if tagname in tags:
+                out[tagname] = tags[tagname]
+            else: 
+                out[tagname] = ''
+        return out
         
     def _index2key(self, index):
         intindex= index - 1
@@ -92,9 +104,11 @@ class Playinglist (Playlist):
                 self._update_tagdb()
                 tchanged = True
             
-        return {'pchanged' : pchanged, 'tchanged': tchanged}
+        d= dict(pchanged= pchanged, tchanged=tchanged)
+        return d
 
-    
+    def len(self):
+        return self._len
 
     def _update_tagdb(self):
         newtags= self.readTags()
@@ -192,3 +206,14 @@ if __name__ == '__main__':
     print "keys:",      p._keys
     print "Current: ", p.current()
     print "Current Tags: ", p.tags(p.current())
+    
+    
+    from pickle import dump, load
+    # import pickle 
+    s = open('playlistdump.txt', 'w')
+    dump(p, s)
+    
+    s2 = open('playlistdump.txt', 'r')
+    p2 = load(s2)
+    # print "p2:", str(p2)
+    

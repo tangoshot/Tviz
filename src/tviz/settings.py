@@ -2,8 +2,8 @@
 Created on Aug 5, 2012
 @author: tolga
 '''
-from tviz.tvizdb import TvizSongFeatures
 from tutil.string import normal_wordbag
+from tviz.tvizdb import TvizSongFeatures
 
 
 image_folder = 'C:/Media/Audio/Music/Released (k)/Tango (k)/Tango images (k)/'
@@ -14,8 +14,9 @@ label_image_folder = image_folder + 'Song images (k)'
 
 IMPORTED_TAG_NAMES = [        
         'Name',
-        'Album Artist',
-        'Genre']
+        'Orchestra',
+        'Genre',
+        'Singers']
 
 
 
@@ -26,6 +27,8 @@ class MySongFeatureFactory():
 
     @staticmethod
     def genre(tags):
+        if not 'Genre' in tags:
+            return None #TODO: HACK. this should happen at reading stage.
         
         tag = normal_wordbag(tags['Genre'])
         
@@ -44,7 +47,9 @@ class MySongFeatureFactory():
     
     @staticmethod
     def orchestra(tags):
-        return tags ['Orchestra']
+        print tags
+        out = tags ['Orchestra']
+        return out
         
     @staticmethod
     def name(tags):
@@ -61,7 +66,7 @@ class MySongFeatureFactory():
         obj.orchestra = self.orchestra(tags)
         obj.singers = self.singers(tags)
         
-        nsingers = obj.singers.lower() # can we lower case UTF?
+        nsingers = [x.lower() for x in obj.singers] # can we lower case UTF?
         if 'instrumental' in nsingers or 'i' in nsingers:
             obj.isinstrumental = True
         
