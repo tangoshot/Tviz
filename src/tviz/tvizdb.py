@@ -26,8 +26,8 @@ if __name__ == '__main__':
     p = Playinglist(McPlayer(c))
     p.update()
 
-    from settings import 
-    tvizdb = TvizDb(playinglist = p, featuresetup = settings.)
+    from settings import MySongFeatureFactory 
+    tvizdb = TvizDb(playinglist = p, featuresetup = MySongFeatureFactory())
     
         
         
