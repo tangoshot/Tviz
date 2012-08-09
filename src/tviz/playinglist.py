@@ -1,6 +1,8 @@
 # from tviz.mcws.client import defaultjriver
+
 from jriver.client import JriverRequest
 import time
+from tviz.settings import IMPORTED_TAG_NAMES
 
 '''
 @author Tolga Konik
@@ -25,7 +27,9 @@ class Playlist(object):
     
     def tags(self, index):
         return self._index2tags(index)
-        
+
+    def keyTags(self, key):
+        return self._keys(key)
 
     def _index2tags(self, index):
         key= self._index2key(index)
@@ -67,12 +71,18 @@ class Playinglist (Playlist):
     def update(self):
         
         '''
-        update len/index/keys and determine if tag database requires update
+        update len/index/keys and determine if tag database requires update.
+
         '''
         # slow call
         sig= self.readSignature()
 
+        pchanged = False # playing list is changed
+        tchanged = False # tags are changed
+
         if self._playinglist_changed(sig):
+            
+            pchanged = True
             self._len = sig.len
             self._keys = sig.keys
             self._index = sig.index
@@ -80,6 +90,11 @@ class Playinglist (Playlist):
             if self._missing_tags(sig):    
                 # slow call
                 self._update_tagdb()
+                tchanged = True
+            
+        return {'pchanged' : pchanged, 'tchanged': tchanged}
+
+    
 
     def _update_tagdb(self):
         newtags= self.readTags()
