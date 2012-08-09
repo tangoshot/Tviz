@@ -4,6 +4,7 @@ from tviz.http_connection import HttpRequest, HttpClient
 
 from jriver.parser import McwsResponseParser, McwsXmlParser, McwsMplParser,\
     McwsParser, McwsSignatureParser
+from tviz import settings
 
 
 class JriverRequest(HttpRequest):
@@ -29,11 +30,12 @@ class JriverRequest(HttpRequest):
         self.setParser(McwsSignatureParser())
 
     def playingnowlist(self, pvalues = None):
+        tagnames = settings.IMPORTED_TAG_NAMES # TODO: HACK
 
-        if self.tagnames == None:
+        if tagnames == None:
             param =  {}
         else:
-            pvalues = ','.join(['[%s]' % t for t in self.tagnames])
+            pvalues = ','.join(['[%s]' % t for t in tagnames])
             param =  {'Fields' : pvalues}
         
         self.setAction('Playback/Playlist', param)
@@ -62,8 +64,6 @@ if __name__=='__main__':
         print r.response
         print r._args
         print r.query()
-        print r.lastcall
-        quit()
         
         r.alive()
         c.call(r)
