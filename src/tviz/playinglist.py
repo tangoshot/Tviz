@@ -3,12 +3,13 @@
 from jriver.client import JriverRequest
 import time
 from tviz.settings import IMPORTED_TAG_NAMES
+from pickle import HIGHEST_PROTOCOL
 
 '''
 @author Tolga Konik
 Assumes the tags do not change within a session. This increases efficiency on large lists
 '''
-
+#TODO: Important _missing_tags is not working. Tags are not cached
 
 # TODO: ask for permission for too large queries, or use a time limit?
 
@@ -17,24 +18,39 @@ class Playlist(object):
     database that stores a playlist
     '''
     
+    
     _tagdb={}
     _keys=[]
-    _index=-1
-    _len= -1
+    _index=None
+    _len=None
 
     def current(self):
         return self._index + 1
+    
+    def index(self):
+        return self._index 
+
+    # TODO: add ability to return all tags.
+    
+        
+    def tagslist(self):
+        # print self._keys
+        return [self.keyTags(key) for key in self._keys]
+    
+    def currentkey(self):
+        key = self._keys [self.index()]
+        return key
     
     def tags(self, index):
         '''
         returns none for missing tags
         '''
-        
+
         
         return self._index2tags(index)
 
     def keyTags(self, key):
-        return self._keys(key)
+        return self._tagdb[key]
 
     def _index2tags(self, index):
         key= self._index2key(index)
@@ -42,10 +58,8 @@ class Playlist(object):
         
         out = {}
         for tagname in IMPORTED_TAG_NAMES:
-            if tagname in tags:
-                out[tagname] = tags[tagname]
-            else: 
-                out[tagname] = ''
+            out[tagname] = tags[tagname]
+
         return out
         
     def _index2key(self, index):
@@ -65,6 +79,7 @@ class Playinglist (Playlist):
 
     def readTags(self):
         t1 = time.time()
+        out = {}
         out = self._player.getPlayinglistTags()
         t2 = time.time()
         dt = t2 - t1
@@ -146,12 +161,10 @@ class Player:
         collects basic playinglist data
         (len, current, keys)
         '''
-        print "getPlayinglistTags Interface must be implemented for:", self
-        raise Exception()
+        raise Exception("getPlayinglistTags Interface must be implemented for: " + self)
     
     def getPlayinglistSignature(self):
-        print "getPlayinglistSignature Interface must be implemented for:", self
-        raise Exception()
+        raise Exception( "getPlayinglistSignature Interface must be implemented for: " + self)
 
 
 class McPlayer (Player):
@@ -188,6 +201,11 @@ class McPlayer (Player):
         out = {}
         for tagbag in tagbaglist:
             key = tagbag[keytag]
+
+            for tagname in IMPORTED_TAG_NAMES:
+                if not tagname in tagbag:
+                    tagbag[tagname] = ''
+            
             out[key] = tagbag
         
         return out
@@ -208,12 +226,12 @@ if __name__ == '__main__':
     print "Current Tags: ", p.tags(p.current())
     
     
-    from pickle import dump, load
+    # from cPickle import dump, load
     # import pickle 
-    s = open('playlistdump.txt', 'w')
-    dump(p, s)
+    #s = open('playlistdump.txt', 'wb')
+    #dump(p, s, HIGHEST_PROTOCOL)
     
-    s2 = open('playlistdump.txt', 'r')
-    p2 = load(s2)
+    #s2 = open('playlistdump.txt', 'rb')
+    #p2 = load(s2)
     # print "p2:", str(p2)
     

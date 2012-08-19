@@ -31,9 +31,8 @@ class McwsXmlParser(object):
         try:
             xml = ElementTree.fromstring(packet)
         except:
-            print "Error parsing response. May be invalid XML:"
-            print packet
-            raise
+            raise Exception("Error parsing response. May be invalid XML:" + packet)
+            
         
         return self.parse_xml(xml)
 
@@ -45,8 +44,7 @@ class McwsMplParser(McwsXmlParser):
         items=[]
 
         if tree.tag != 'MPL':
-            print XML.dump(tree)
-            raise
+            raise Exception('MPL excepted in XML but got: ', XML.dump(tree))
             
 
         for itemTree in tree.findall('Item'):
@@ -76,11 +74,10 @@ class McwsResponseParser (McwsXmlParser):
                 out['status']= False
                 out['data']= response.attrib.get("Information")
             else: 
-                raise
+                raise Exception('Unexpected Response: ' + response)
         except:
-            print "Cannot read response"
-            print response
-            raise
+            raise Exception("Cannot read response: " + response)
+
         return out
 
     def parse_data(self, tree):

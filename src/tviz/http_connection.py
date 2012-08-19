@@ -52,16 +52,12 @@ class HttpClient (object):
         try:
             socket = urllib.urlopen(command)
         except:
-            print "Failed response for:"
-            print command
-            raise
+            raise Exception("Failed response for: " + command)
         try:
             request.receive(socket)
         except:
-            print "Cannot connect to socket: "
-            print socket
             socket.close()
-            raise
+            raise Exception("Cannot connect to socket")
         finally:
             socket.close()
 
@@ -147,8 +143,7 @@ class DefaultReader:
         try:
             out = socket.read()
         except:
-            print "Cannot read from socket:"
-            raise
+            raise Exception( "Cannot read from socket:")
         
         return out
 

@@ -6,36 +6,24 @@ Created on Aug 8, 2012
 
 
 
-x = [1,1,1,2,2,2,3,3,3,1,1,1]
+def tandait(lst, evalfn):
+    i = 0
+    j = 1
 
+    while (i <len(lst) and  j <= len(lst)):
 
-#def tanda(x):
-#    for i in range(0, x.len):
-#        for j= range(i, x.len):
-#            if x[j+1] != x[j]:
-#                yield i,j
-
-
-
-def tanda(x, evalfn):
-    i = j = 0
-    while (i <len(x) and  j < len(x)):
-        if j == len(x) - 1:
-            yield i, j # Final exit condition
-            return 
+        if j == len(lst) or evalfn(lst[j]) != evalfn(lst[j - 1]):
+            yield i , j, lst[i : j]
+            i = j 
         
-        if evalfn(x[j]) != evalfn(x[j + 1]):
-            yield i , j
-            i = j = j + 1
-        else:
-            j += 1
+        j += 1
 
-def identity(x):
-    return x
-
-for a,b in tanda(x, identity):
-    print "---------"
-    for s in range(a,b + 1):
-        print s, ': ', x[s]
-            
     
+if __name__ == '__main__':
+    lst = [1,1,1,2,2,2,3,3,3,1,1,1,5]
+    
+    def identity(x):
+        return x
+    
+    for (a,b,c) in tandait(lst, identity):
+        print a,b,c

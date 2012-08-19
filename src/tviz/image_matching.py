@@ -9,15 +9,26 @@ from tutil.string import normal_wordbag
 
 class ImageDb():
 
+    _imagefolders = [
+        orchestra_image_folder, 
+        singer_image_folder]
+        # , label_image_folder]
+    
     _imageexts = frozenset(['gif', 'jpg', 'bmp', 'gif', 'jpg', 'jpeg', 'png', 'webp'])
     _db = {}
     
+    def __init__(self):
+        self.reset()
+    
+    def __str__(self):
+        
+            return '\n'.join([str(key) + ' : ' + str(self._db[key]) for key in self._db])
 
     def reset(self):
-        for imagefolder in [label_image_folder, orchestra_image_folder, singer_image_folder]:
-            for _dir, _subdirs, files in os.walk(imagefolder):
+        for imagefolder in self._imagefolders:
+            for directory, _subdirs, files in os.walk(imagefolder):
                 for f in files:
-                    imagefile = os.path.join(dir,f) 
+                    imagefile = os.path.join(directory,f) 
                     
                     base = os.path.basename(f)
                     
@@ -25,18 +36,27 @@ class ImageDb():
                     
                     if rawwordbag & self._imageexts != []:
                         wordbag = rawwordbag - self._imageexts
-                        print wordbag,  imagefile
+                        # print wordbag,  imagefile
                         self._db [wordbag] = imagefile 
                         # for each word bag, only one image file is stored.
             
+    # TODO: implement best match
+    def find(self, input):
+        # print self
+        # print "Find: ", input
         
-    def match(self, instr1):
-        instr = normal_wordbag(instr1)
-        if instr in self._db:
-            outstr = self._db[input]
+        input = normal_wordbag(input)
+        # print "query: ", input
+        
+        if input in self._db:
+            try:
+                outstr = self._db[input]
+            except:
+                print "Cannot find %s in image database\n" % input
+            
             return outstr
         
-        # TODO: partial match
+        # TODO: partial find
         return None
         
 
@@ -44,21 +64,23 @@ class ImageDb():
 
 if __name__ == '__main__':
     
-    imagedb = ImageDb()
-    print imagedb._normalize_wordbag("DiSarli")
-    print imagedb._normalize_wordbag("diSarli")
-    print imagedb._normalize_wordbag("dArienzo")
-    print imagedb._normalize_wordbag("d'Arienzo")
-    print imagedb._normalize_wordbag("D'arienzo")
+    imagefinder = ImageDb()
+#    print imagefinder._normalize_wordbag("DiSarli")
+#    print imagefinder._normalize_wordbag("diSarli")
+#    print imagefinder._normalize_wordbag("dArienzo")
+#    print imagefinder._normalize_wordbag("d'Arienzo")
+#    print imagefinder._normalize_wordbag("D'arienzo")
     
-    imagedb.reset()
+    imagefinder.reset()
     
     
-    d = imagedb._db
+    d = imagefinder._db
     
     for x in d:
         print x, ":", d[x]
 
-    for s in ['Canaro', 'Di Sarli', "D'Arienzo"]:
-        print s, ':', imagedb.match(s)
+    for s in ['Canaro', 'Di Sarli', "D'Arienzo", "Podesta, Alberto "]:
+        print s, ':', imagefinder.find(s)
+        
+        print imagefinder.find('rojas alfredo')
         
