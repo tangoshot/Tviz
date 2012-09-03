@@ -1,0 +1,812 @@
+:- dynamic playinglist/5.
+
+playinglist(['14567924', '14567924', '14567924', '14567924', '3131293', '17643148', '2850740', '17731553', '21867379', '2457292', '5422890', '2457203', '2847797', '2458650', '2458487', '2458653', '2458662', '13187407', '9794799', '23926329', '5422102', '5422121', '23926327', '13187392', '9794799', '5422514', '13214605', '13214606', '5422513', '13214603', '13185644', '17731596', '10307401', '5421041', '5420959', '13187322', '13185643', '17770116', '10301344', '5421885', '10301311', '10301317', '13187390', '17770024', '24536392', '24535387', '24536391', '24535357', '13187394', '17377473', '2457108', '4368021', '10341089', '10300683', '10300679', '10300824', '10300823', '13187388', '17769815', '2458426', '2458389', '5422444', '5422415', '2458393', '13187396', '17770148', '5420846', '2457652', '5420848', '13187325', '2845624', '5422857', '5422845', '5422848', '5422856', '17731099', '10300978', '10300896', '10300908', '10300895', '13187384', '17731601', '5423186', '5423198', '5423232', '3133683', '2847030', '13187427', '13187427', '13187427', '13187427', '13187427', '13187427', '5423196', '22111346', '17377471', '2845624', '2458166', '2458157', '5421217', '5421220', '13187372', '3274381', '2457361', '2457371', '2457366', '2457462', '13187376', '13185642', '17731633', '24536388', '24535333', '24535375', '13187318', '2848014', '5421770', '2457811', '5421758', '5421760', '13187386', '3274381', '5422132', '2456975', '23926311', '5422143', '23926324', '13187392', '2845637', '17643162', '2457330', '17643124', '5423437', '13187441', '3274381', '10307308', '10307312', '10307325', '10307314', '13187411', '3131191', '13185641', '5422602', '10301215', '10301145', '10301224', '10301133', '5422165', '24536383', '5422211', '5422209', '5422859', '5422855', '5422860', '5422842', '5422838', '2458304', '2458282', '2458296', '2458297', '5422703', '2458303', '13187324', '2457663', '5421289', '5421389', '5421423', '13187324', '2457037', '5422521', '2457024', '3133447', '13187317', '2848070', '2848063', '2848526', '13187317', '2848063', '2848526', '13187317'], 45, 179, true, true).
+
+:- dynamic playinglist_parameter_cacheDB/3.
+
+playinglist_parameter_cacheDB('2848526', tvizOrchestra, 'Simon Shaheen').
+playinglist_parameter_cacheDB('2848526', 'Name', 'Al-Qantara').
+playinglist_parameter_cacheDB('2848526', 'SingerList', '').
+playinglist_parameter_cacheDB('2848526', 'Genre', 'Other').
+playinglist_parameter_cacheDB('2848526', mcVizType, nontraditional).
+playinglist_parameter_cacheDB('2848063', tvizOrchestra, 'Cesaria Evora, Best Of').
+playinglist_parameter_cacheDB('2848063', 'Name', 'Besame Mucho').
+playinglist_parameter_cacheDB('2848063', 'SingerList', '').
+playinglist_parameter_cacheDB('2848063', 'Genre', 'Regional').
+playinglist_parameter_cacheDB('2848063', mcVizType, nontraditional).
+playinglist_parameter_cacheDB('2848070', tvizOrchestra, 'Cesaria Evora, Best Of').
+playinglist_parameter_cacheDB('2848070', 'Name', 'Vida Tem Um So Vida').
+playinglist_parameter_cacheDB('2848070', 'SingerList', '').
+playinglist_parameter_cacheDB('2848070', 'Genre', 'Regional').
+playinglist_parameter_cacheDB('2848070', mcVizType, break).
+playinglist_parameter_cacheDB('13187317', tvizOrchestra, 'Chapter Seperator').
+playinglist_parameter_cacheDB('13187317', 'Name', '¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187317', 'SingerList', '').
+playinglist_parameter_cacheDB('13187317', 'Genre', '').
+playinglist_parameter_cacheDB('13187317', mcVizType, break).
+playinglist_parameter_cacheDB('3133447', tvizOrchestra, '').
+playinglist_parameter_cacheDB('3133447', 'Name', 'Mi buenos aires querido').
+playinglist_parameter_cacheDB('3133447', 'SingerList', 'Gardél, Carlos').
+playinglist_parameter_cacheDB('3133447', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('3133447', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457024', tvizOrchestra, '').
+playinglist_parameter_cacheDB('2457024', 'Name', 'Adiós muchachos').
+playinglist_parameter_cacheDB('2457024', 'SingerList', 'Gardél, Carlos').
+playinglist_parameter_cacheDB('2457024', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457024', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422521', tvizOrchestra, '').
+playinglist_parameter_cacheDB('5422521', 'Name', 'Por una cabeza').
+playinglist_parameter_cacheDB('5422521', 'SingerList', 'Gardél, Carlos').
+playinglist_parameter_cacheDB('5422521', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422521', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457037', tvizOrchestra, '').
+playinglist_parameter_cacheDB('2457037', 'Name', 'Secreto').
+playinglist_parameter_cacheDB('2457037', 'SingerList', 'Gardél, Carlos').
+playinglist_parameter_cacheDB('2457037', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457037', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421423', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5421423', 'Name', 'No me pregunten por que').
+playinglist_parameter_cacheDB('5421423', 'SingerList', 'Famá, Ernesto').
+playinglist_parameter_cacheDB('5421423', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421423', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421389', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5421389', 'Name', 'Charlemos').
+playinglist_parameter_cacheDB('5421389', 'SingerList', 'Famá, Ernesto').
+playinglist_parameter_cacheDB('5421389', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421389', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421289', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5421289', 'Name', 'Canto').
+playinglist_parameter_cacheDB('5421289', 'SingerList', 'Famá, Ernesto').
+playinglist_parameter_cacheDB('5421289', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421289', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457663', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('2457663', 'Name', 'Por vos yo me rompo todo').
+playinglist_parameter_cacheDB('2457663', 'SingerList', 'Famá, Ernesto').
+playinglist_parameter_cacheDB('2457663', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457663', mcVizType, traditional).
+playinglist_parameter_cacheDB('13187324', tvizOrchestra, 'Section Seperator').
+playinglist_parameter_cacheDB('13187324', 'Name', '\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509\u2509').
+playinglist_parameter_cacheDB('13187324', 'SingerList', '').
+playinglist_parameter_cacheDB('13187324', 'Genre', '').
+playinglist_parameter_cacheDB('13187324', mcVizType, break).
+playinglist_parameter_cacheDB('2458303', tvizOrchestra, 'OTV').
+playinglist_parameter_cacheDB('2458303', 'Name', 'Fumando espero').
+playinglist_parameter_cacheDB('2458303', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('2458303', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458303', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422703', tvizOrchestra, 'OTV').
+playinglist_parameter_cacheDB('5422703', 'Name', 'El chamuyo').
+playinglist_parameter_cacheDB('5422703', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('5422703', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422703', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458297', tvizOrchestra, 'OTV').
+playinglist_parameter_cacheDB('2458297', 'Name', 'Chorra').
+playinglist_parameter_cacheDB('2458297', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('2458297', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458297', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458296', tvizOrchestra, 'OTV').
+playinglist_parameter_cacheDB('2458296', 'Name', 'Che papusa, oí!').
+playinglist_parameter_cacheDB('2458296', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('2458296', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458296', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458282', tvizOrchestra, 'OTV').
+playinglist_parameter_cacheDB('2458282', 'Name', 'Mi taza de cafe').
+playinglist_parameter_cacheDB('2458282', 'SingerList', 'Carol, Alberto').
+playinglist_parameter_cacheDB('2458282', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458282', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458304', tvizOrchestra, 'OTV').
+playinglist_parameter_cacheDB('2458304', 'Name', 'Jueves').
+playinglist_parameter_cacheDB('2458304', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('2458304', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458304', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422838', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422838', 'Name', 'Alma de bandoneón').
+playinglist_parameter_cacheDB('5422838', 'SingerList', 'Beltrán, Mario').
+playinglist_parameter_cacheDB('5422838', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422838', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422842', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422842', 'Name', 'Campanas del recuerdo').
+playinglist_parameter_cacheDB('5422842', 'SingerList', 'Sanders, Raúl').
+playinglist_parameter_cacheDB('5422842', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422842', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422860', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422860', 'Name', 'Yo también soñé').
+playinglist_parameter_cacheDB('5422860', 'SingerList', 'Scalón, Luis').
+playinglist_parameter_cacheDB('5422860', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422860', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422855', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422855', 'Name', 'Resentimiento').
+playinglist_parameter_cacheDB('5422855', 'SingerList', 'Scalón, Luis').
+playinglist_parameter_cacheDB('5422855', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422855', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422859', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422859', 'Name', 'Yo no sé por qué te quiero').
+playinglist_parameter_cacheDB('5422859', 'SingerList', 'Sanders, Raúl').
+playinglist_parameter_cacheDB('5422859', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422859', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422209', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('5422209', 'Name', 'Santa milonguita').
+playinglist_parameter_cacheDB('5422209', 'SingerList', 'Gutierrez, Félix').
+playinglist_parameter_cacheDB('5422209', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422209', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422211', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('5422211', 'Name', 'Mañana').
+playinglist_parameter_cacheDB('5422211', 'SingerList', 'Gutierrez, Félix').
+playinglist_parameter_cacheDB('5422211', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422211', mcVizType, traditional).
+playinglist_parameter_cacheDB('24536383', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24536383', 'Name', 'Que Haces Que Haces').
+playinglist_parameter_cacheDB('24536383', 'SingerList', 'Gutierrez, Félix').
+playinglist_parameter_cacheDB('24536383', 'Genre', tango).
+playinglist_parameter_cacheDB('24536383', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422165', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('5422165', 'Name', 'El chamuyo').
+playinglist_parameter_cacheDB('5422165', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('5422165', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422165', mcVizType, traditional).
+playinglist_parameter_cacheDB('10301133', tvizOrchestra, 'Lomuto').
+playinglist_parameter_cacheDB('10301133', 'Name', 'Cicatrices').
+playinglist_parameter_cacheDB('10301133', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('10301133', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301133', mcVizType, traditional).
+playinglist_parameter_cacheDB('10301224', tvizOrchestra, 'Lomuto').
+playinglist_parameter_cacheDB('10301224', 'Name', 'Por la vuelta').
+playinglist_parameter_cacheDB('10301224', 'SingerList', 'Omar, Jorge').
+playinglist_parameter_cacheDB('10301224', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301224', mcVizType, traditional).
+playinglist_parameter_cacheDB('10301145', tvizOrchestra, 'Lomuto').
+playinglist_parameter_cacheDB('10301145', 'Name', 'Caricias').
+playinglist_parameter_cacheDB('10301145', 'SingerList', 'Omar, Jorge').
+playinglist_parameter_cacheDB('10301145', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301145', mcVizType, traditional).
+playinglist_parameter_cacheDB('10301215', tvizOrchestra, 'Lomuto').
+playinglist_parameter_cacheDB('10301215', 'Name', 'Caminito').
+playinglist_parameter_cacheDB('10301215', 'SingerList', 'Omar, Jorge; U').
+playinglist_parameter_cacheDB('10301215', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301215', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422602', tvizOrchestra, 'Lomuto').
+playinglist_parameter_cacheDB('5422602', 'Name', 'Solamente ella').
+playinglist_parameter_cacheDB('5422602', 'SingerList', 'U').
+playinglist_parameter_cacheDB('5422602', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422602', mcVizType, traditional).
+playinglist_parameter_cacheDB('13185641', tvizOrchestra, 'Chapter Seperator').
+playinglist_parameter_cacheDB('13185641', 'Name', '¦¦ CHAPTER 1 ¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13185641', 'SingerList', '').
+playinglist_parameter_cacheDB('13185641', 'Genre', '').
+playinglist_parameter_cacheDB('13185641', mcVizType, break).
+playinglist_parameter_cacheDB('3131191', tvizOrchestra, 'Cole Porter').
+playinglist_parameter_cacheDB('3131191', 'Name', 'Prelude [open ended]').
+playinglist_parameter_cacheDB('3131191', 'SingerList', '').
+playinglist_parameter_cacheDB('3131191', 'Genre', 'Musical - Theatrical').
+playinglist_parameter_cacheDB('3131191', mcVizType, break).
+playinglist_parameter_cacheDB('13187411', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187411', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187411', 'SingerList', '').
+playinglist_parameter_cacheDB('13187411', 'Genre', '').
+playinglist_parameter_cacheDB('13187411', mcVizType, break).
+playinglist_parameter_cacheDB('10307314', tvizOrchestra, 'Tanturi').
+playinglist_parameter_cacheDB('10307314', 'Name', 'Esta noche me emborracho').
+playinglist_parameter_cacheDB('10307314', 'SingerList', 'Castillo, Alberto').
+playinglist_parameter_cacheDB('10307314', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10307314', mcVizType, traditional).
+playinglist_parameter_cacheDB('10307325', tvizOrchestra, 'Tanturi').
+playinglist_parameter_cacheDB('10307325', 'Name', 'Ya sale el tren').
+playinglist_parameter_cacheDB('10307325', 'SingerList', 'Castillo, Alberto').
+playinglist_parameter_cacheDB('10307325', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10307325', mcVizType, traditional).
+playinglist_parameter_cacheDB('10307312', tvizOrchestra, 'Tanturi').
+playinglist_parameter_cacheDB('10307312', 'Name', 'Decile que vuelva').
+playinglist_parameter_cacheDB('10307312', 'SingerList', 'Castillo, Alberto').
+playinglist_parameter_cacheDB('10307312', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10307312', mcVizType, traditional).
+playinglist_parameter_cacheDB('10307308', tvizOrchestra, 'Tanturi').
+playinglist_parameter_cacheDB('10307308', 'Name', 'Así se baila el tango').
+playinglist_parameter_cacheDB('10307308', 'SingerList', 'Castillo, Alberto').
+playinglist_parameter_cacheDB('10307308', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10307308', mcVizType, traditional).
+playinglist_parameter_cacheDB('13187441', tvizOrchestra, 'Vals Tanda').
+playinglist_parameter_cacheDB('13187441', 'Name', '¦¦¦ Vals ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187441', 'SingerList', '').
+playinglist_parameter_cacheDB('13187441', 'Genre', '').
+playinglist_parameter_cacheDB('13187441', mcVizType, break).
+playinglist_parameter_cacheDB('5423437', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('5423437', 'Name', 'Con tu mirar').
+playinglist_parameter_cacheDB('5423437', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('5423437', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('5423437', mcVizType, traditional).
+playinglist_parameter_cacheDB('17643124', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('17643124', 'Name', 'Isabelita').
+playinglist_parameter_cacheDB('17643124', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('17643124', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('17643124', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457330', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('2457330', 'Name', 'Mariquita No Mires Al Puerto').
+playinglist_parameter_cacheDB('2457330', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('2457330', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('2457330', mcVizType, traditional).
+playinglist_parameter_cacheDB('17643162', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('17643162', 'Name', 'En El Volga Te Espero').
+playinglist_parameter_cacheDB('17643162', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('17643162', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('17643162', mcVizType, traditional).
+playinglist_parameter_cacheDB('2845637', tvizOrchestra, 'Grease').
+playinglist_parameter_cacheDB('2845637', 'Name', 'Grease (Reprise)').
+playinglist_parameter_cacheDB('2845637', 'SingerList', '').
+playinglist_parameter_cacheDB('2845637', 'Genre', 'Rock & Roll').
+playinglist_parameter_cacheDB('2845637', mcVizType, break).
+playinglist_parameter_cacheDB('23926324', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('23926324', 'Name', 'Lo Pasao Pasó').
+playinglist_parameter_cacheDB('23926324', 'SingerList', 'Rufino, Roberto').
+playinglist_parameter_cacheDB('23926324', 'Genre', tango).
+playinglist_parameter_cacheDB('23926324', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422143', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('5422143', 'Name', 'Mañana zarpa un barco').
+playinglist_parameter_cacheDB('5422143', 'SingerList', 'Rufino, Roberto').
+playinglist_parameter_cacheDB('5422143', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422143', mcVizType, traditional).
+playinglist_parameter_cacheDB('23926311', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('23926311', 'Name', 'Adiós Te Vas').
+playinglist_parameter_cacheDB('23926311', 'SingerList', 'Rufino, Roberto').
+playinglist_parameter_cacheDB('23926311', 'Genre', tango).
+playinglist_parameter_cacheDB('23926311', mcVizType, traditional).
+playinglist_parameter_cacheDB('2456975', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('2456975', 'Name', 'Necesito olvidar').
+playinglist_parameter_cacheDB('2456975', 'SingerList', 'Rufino, Roberto').
+playinglist_parameter_cacheDB('2456975', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2456975', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422132', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('5422132', 'Name', 'Corazón').
+playinglist_parameter_cacheDB('5422132', 'SingerList', 'Rufino, Roberto').
+playinglist_parameter_cacheDB('5422132', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422132', mcVizType, traditional).
+playinglist_parameter_cacheDB('13187386', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187386', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187386', 'SingerList', '').
+playinglist_parameter_cacheDB('13187386', 'Genre', '').
+playinglist_parameter_cacheDB('13187386', mcVizType, break).
+playinglist_parameter_cacheDB('5421760', tvizOrchestra, 'D\'Arienzo').
+playinglist_parameter_cacheDB('5421760', 'Name', 'Humillación').
+playinglist_parameter_cacheDB('5421760', 'SingerList', 'Mauré, Héctor').
+playinglist_parameter_cacheDB('5421760', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421760', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421758', tvizOrchestra, 'D\'Arienzo').
+playinglist_parameter_cacheDB('5421758', 'Name', 'Dime mi amor').
+playinglist_parameter_cacheDB('5421758', 'SingerList', 'Mauré, Héctor').
+playinglist_parameter_cacheDB('5421758', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421758', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457811', tvizOrchestra, 'D\'Arienzo').
+playinglist_parameter_cacheDB('2457811', 'Name', 'Claudinette').
+playinglist_parameter_cacheDB('2457811', 'SingerList', 'Mauré, Héctor').
+playinglist_parameter_cacheDB('2457811', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457811', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421770', tvizOrchestra, 'D\'Arienzo').
+playinglist_parameter_cacheDB('5421770', 'Name', 'Tango brujo').
+playinglist_parameter_cacheDB('5421770', 'SingerList', 'Mauré, Héctor').
+playinglist_parameter_cacheDB('5421770', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421770', mcVizType, traditional).
+playinglist_parameter_cacheDB('2848014', tvizOrchestra, 'Vv.Aa.').
+playinglist_parameter_cacheDB('2848014', 'Name', 'El Cayuco / Babalu').
+playinglist_parameter_cacheDB('2848014', 'SingerList', '').
+playinglist_parameter_cacheDB('2848014', 'Genre', 'Mambo').
+playinglist_parameter_cacheDB('2848014', mcVizType, break).
+playinglist_parameter_cacheDB('13187318', tvizOrchestra, 'Milonga Tanda').
+playinglist_parameter_cacheDB('13187318', 'Name', '¦¦¦ Milonga ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187318', 'SingerList', '').
+playinglist_parameter_cacheDB('13187318', 'Genre', '').
+playinglist_parameter_cacheDB('13187318', mcVizType, break).
+playinglist_parameter_cacheDB('24535375', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24535375', 'Name', 'El Torito').
+playinglist_parameter_cacheDB('24535375', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('24535375', 'Genre', milonga).
+playinglist_parameter_cacheDB('24535375', mcVizType, traditional).
+playinglist_parameter_cacheDB('24535333', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24535333', 'Name', 'Sacale Punta').
+playinglist_parameter_cacheDB('24535333', 'SingerList', 'Lagos, Horacio').
+playinglist_parameter_cacheDB('24535333', 'Genre', milonga).
+playinglist_parameter_cacheDB('24535333', mcVizType, traditional).
+playinglist_parameter_cacheDB('24536388', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24536388', 'Name', 'La Milonga Que Faltaba').
+playinglist_parameter_cacheDB('24536388', 'SingerList', 'Lagos, Horacio').
+playinglist_parameter_cacheDB('24536388', 'Genre', milonga).
+playinglist_parameter_cacheDB('24536388', mcVizType, traditional).
+playinglist_parameter_cacheDB('17731633', tvizOrchestra, 'Best TV and Movie Themes').
+playinglist_parameter_cacheDB('17731633', 'Name', 'Sex and the City').
+playinglist_parameter_cacheDB('17731633', 'SingerList', '').
+playinglist_parameter_cacheDB('17731633', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17731633', mcVizType, break).
+playinglist_parameter_cacheDB('13185642', tvizOrchestra, 'Chapter Seperator').
+playinglist_parameter_cacheDB('13185642', 'Name', '¦¦ CHAPTER 2 ¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13185642', 'SingerList', '').
+playinglist_parameter_cacheDB('13185642', 'Genre', '').
+playinglist_parameter_cacheDB('13185642', mcVizType, break).
+playinglist_parameter_cacheDB('13187376', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187376', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187376', 'SingerList', '').
+playinglist_parameter_cacheDB('13187376', 'Genre', '').
+playinglist_parameter_cacheDB('13187376', mcVizType, break).
+playinglist_parameter_cacheDB('2457462', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('2457462', 'Name', 'Esta noche de luna').
+playinglist_parameter_cacheDB('2457462', 'SingerList', 'Roldán, Carlos').
+playinglist_parameter_cacheDB('2457462', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457462', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457366', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('2457366', 'Name', 'Los ojos más lindos').
+playinglist_parameter_cacheDB('2457366', 'SingerList', 'Roldán, Carlos').
+playinglist_parameter_cacheDB('2457366', 'Genre', tango).
+playinglist_parameter_cacheDB('2457366', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457371', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('2457371', 'Name', 'Queja indiana').
+playinglist_parameter_cacheDB('2457371', 'SingerList', 'Roldán, Carlos').
+playinglist_parameter_cacheDB('2457371', 'Genre', tango).
+playinglist_parameter_cacheDB('2457371', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457361', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('2457361', 'Name', 'Bésame mi amor').
+playinglist_parameter_cacheDB('2457361', 'SingerList', 'Roldán, Carlos').
+playinglist_parameter_cacheDB('2457361', 'Genre', tango).
+playinglist_parameter_cacheDB('2457361', mcVizType, traditional).
+playinglist_parameter_cacheDB('3274381', tvizOrchestra, '(Multiple Artists)').
+playinglist_parameter_cacheDB('3274381', 'Name', 'Land Downunder').
+playinglist_parameter_cacheDB('3274381', 'SingerList', '').
+playinglist_parameter_cacheDB('3274381', 'Genre', 'Rock').
+playinglist_parameter_cacheDB('3274381', mcVizType, break).
+playinglist_parameter_cacheDB('13187372', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187372', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187372', 'SingerList', '').
+playinglist_parameter_cacheDB('13187372', 'Genre', '').
+playinglist_parameter_cacheDB('13187372', mcVizType, break).
+playinglist_parameter_cacheDB('5421220', tvizOrchestra, 'Caló').
+playinglist_parameter_cacheDB('5421220', 'Name', 'Nada').
+playinglist_parameter_cacheDB('5421220', 'SingerList', 'Iriarte, Raúl').
+playinglist_parameter_cacheDB('5421220', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421220', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421217', tvizOrchestra, 'Caló').
+playinglist_parameter_cacheDB('5421217', 'Name', 'Marion').
+playinglist_parameter_cacheDB('5421217', 'SingerList', 'Iriarte, Raúl').
+playinglist_parameter_cacheDB('5421217', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421217', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458157', tvizOrchestra, 'Caló').
+playinglist_parameter_cacheDB('2458157', 'Name', 'La VI llegar').
+playinglist_parameter_cacheDB('2458157', 'SingerList', 'Iriarte, Raúl').
+playinglist_parameter_cacheDB('2458157', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458157', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458166', tvizOrchestra, 'Caló').
+playinglist_parameter_cacheDB('2458166', 'Name', 'Cuando tallan los recuerdos').
+playinglist_parameter_cacheDB('2458166', 'SingerList', 'Iriarte, Raúl').
+playinglist_parameter_cacheDB('2458166', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458166', mcVizType, traditional).
+playinglist_parameter_cacheDB('17377471', tvizOrchestra, 'Glee').
+playinglist_parameter_cacheDB('17377471', 'Name', 'Glee - bbb-BA').
+playinglist_parameter_cacheDB('17377471', 'SingerList', '').
+playinglist_parameter_cacheDB('17377471', 'Genre', '').
+playinglist_parameter_cacheDB('17377471', mcVizType, break).
+playinglist_parameter_cacheDB('22111346', tvizOrchestra, 'The Swingle Singers').
+playinglist_parameter_cacheDB('22111346', 'Name', 'William Tell Overture').
+playinglist_parameter_cacheDB('22111346', 'SingerList', '').
+playinglist_parameter_cacheDB('22111346', 'Genre', 'Acapella').
+playinglist_parameter_cacheDB('22111346', mcVizType, break).
+playinglist_parameter_cacheDB('5423196', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5423196', 'Name', 'Corazón de oro').
+playinglist_parameter_cacheDB('5423196', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('5423196', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('5423196', mcVizType, traditional).
+playinglist_parameter_cacheDB('13187427', tvizOrchestra, 'Vals Tanda').
+playinglist_parameter_cacheDB('13187427', 'Name', '¦¦¦ Vals ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187427', 'SingerList', '').
+playinglist_parameter_cacheDB('13187427', 'Genre', '').
+playinglist_parameter_cacheDB('13187427', mcVizType, break).
+playinglist_parameter_cacheDB('2847030', tvizOrchestra, 'Alain Boublil & Claude - Miche..').
+playinglist_parameter_cacheDB('2847030', 'Name', 'Work Song').
+playinglist_parameter_cacheDB('2847030', 'SingerList', '').
+playinglist_parameter_cacheDB('2847030', 'Genre', 'Musical - Theatrical').
+playinglist_parameter_cacheDB('2847030', mcVizType, break).
+playinglist_parameter_cacheDB('3133683', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('3133683', 'Name', 'Desde el alma').
+playinglist_parameter_cacheDB('3133683', 'SingerList', 'Omar, Nelly').
+playinglist_parameter_cacheDB('3133683', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('3133683', mcVizType, traditional).
+playinglist_parameter_cacheDB('5423232', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5423232', 'Name', 'Soñar y nada más').
+playinglist_parameter_cacheDB('5423232', 'SingerList', 'Adrián, Eduardo; Roldán, Carlos').
+playinglist_parameter_cacheDB('5423232', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('5423232', mcVizType, traditional).
+playinglist_parameter_cacheDB('5423198', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5423198', 'Name', 'Cuando estaba enamorado').
+playinglist_parameter_cacheDB('5423198', 'SingerList', 'Amor, Francisco').
+playinglist_parameter_cacheDB('5423198', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('5423198', mcVizType, traditional).
+playinglist_parameter_cacheDB('5423186', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5423186', 'Name', 'Adiós juventud').
+playinglist_parameter_cacheDB('5423186', 'SingerList', 'Famá, Ernesto').
+playinglist_parameter_cacheDB('5423186', 'Genre', 'Vals').
+playinglist_parameter_cacheDB('5423186', mcVizType, traditional).
+playinglist_parameter_cacheDB('17731601', tvizOrchestra, 'Best TV and Movie Themes').
+playinglist_parameter_cacheDB('17731601', 'Name', 'Bonanza').
+playinglist_parameter_cacheDB('17731601', 'SingerList', '').
+playinglist_parameter_cacheDB('17731601', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17731601', mcVizType, break).
+playinglist_parameter_cacheDB('13187384', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187384', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187384', 'SingerList', '').
+playinglist_parameter_cacheDB('13187384', 'Genre', '').
+playinglist_parameter_cacheDB('13187384', mcVizType, break).
+playinglist_parameter_cacheDB('10300895', tvizOrchestra, 'D\'Agostino').
+playinglist_parameter_cacheDB('10300895', 'Name', 'A quien le puede importar').
+playinglist_parameter_cacheDB('10300895', 'SingerList', 'Vargas, Ángel').
+playinglist_parameter_cacheDB('10300895', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300895', mcVizType, traditional).
+playinglist_parameter_cacheDB('10300908', tvizOrchestra, 'D\'Agostino').
+playinglist_parameter_cacheDB('10300908', 'Name', 'Mano blanca').
+playinglist_parameter_cacheDB('10300908', 'SingerList', 'Vargas, Ángel').
+playinglist_parameter_cacheDB('10300908', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300908', mcVizType, traditional).
+playinglist_parameter_cacheDB('10300896', tvizOrchestra, 'D\'Agostino').
+playinglist_parameter_cacheDB('10300896', 'Name', 'Adiós arrabal').
+playinglist_parameter_cacheDB('10300896', 'SingerList', 'Vargas, Ángel').
+playinglist_parameter_cacheDB('10300896', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300896', mcVizType, traditional).
+playinglist_parameter_cacheDB('10300978', tvizOrchestra, 'D\'Agostino').
+playinglist_parameter_cacheDB('10300978', 'Name', 'Café dominguez').
+playinglist_parameter_cacheDB('10300978', 'SingerList', 'Centeya, Julián').
+playinglist_parameter_cacheDB('10300978', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300978', mcVizType, traditional).
+playinglist_parameter_cacheDB('17731099', tvizOrchestra, '100 High Quality Ringtones').
+playinglist_parameter_cacheDB('17731099', 'Name', 'Love Boat').
+playinglist_parameter_cacheDB('17731099', 'SingerList', '').
+playinglist_parameter_cacheDB('17731099', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17731099', mcVizType, break).
+playinglist_parameter_cacheDB('5422856', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422856', 'Name', 'Rien que nous deux').
+playinglist_parameter_cacheDB('5422856', 'SingerList', 'Sanders, Raúl').
+playinglist_parameter_cacheDB('5422856', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422856', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422848', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422848', 'Name', 'La melodía de nuestro adiós').
+playinglist_parameter_cacheDB('5422848', 'SingerList', 'Sanders, Raúl').
+playinglist_parameter_cacheDB('5422848', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422848', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422845', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422845', 'Name', 'Envidia').
+playinglist_parameter_cacheDB('5422845', 'SingerList', 'Scalón, Luis').
+playinglist_parameter_cacheDB('5422845', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422845', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422857', tvizOrchestra, 'CanaroR').
+playinglist_parameter_cacheDB('5422857', 'Name', 'Quiero verte una vez más').
+playinglist_parameter_cacheDB('5422857', 'SingerList', 'Scalón, Luis').
+playinglist_parameter_cacheDB('5422857', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422857', mcVizType, traditional).
+playinglist_parameter_cacheDB('2845624', tvizOrchestra, 'Grease').
+playinglist_parameter_cacheDB('2845624', 'Name', 'Blue Moon').
+playinglist_parameter_cacheDB('2845624', 'SingerList', '').
+playinglist_parameter_cacheDB('2845624', 'Genre', 'Rock & Roll').
+playinglist_parameter_cacheDB('2845624', mcVizType, break).
+playinglist_parameter_cacheDB('13187325', tvizOrchestra, 'Milonga Tanda').
+playinglist_parameter_cacheDB('13187325', 'Name', '¦¦¦ Milonga ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187325', 'SingerList', '').
+playinglist_parameter_cacheDB('13187325', 'Genre', '').
+playinglist_parameter_cacheDB('13187325', mcVizType, break).
+playinglist_parameter_cacheDB('5420848', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5420848', 'Name', 'Milonga criolla').
+playinglist_parameter_cacheDB('5420848', 'SingerList', 'Maida, Roberto').
+playinglist_parameter_cacheDB('5420848', 'Genre', 'Milonga').
+playinglist_parameter_cacheDB('5420848', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457652', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('2457652', 'Name', 'El llorón').
+playinglist_parameter_cacheDB('2457652', 'SingerList', 'Famá, Ernesto').
+playinglist_parameter_cacheDB('2457652', 'Genre', 'Milonga').
+playinglist_parameter_cacheDB('2457652', mcVizType, traditional).
+playinglist_parameter_cacheDB('5420846', tvizOrchestra, 'Canaro').
+playinglist_parameter_cacheDB('5420846', 'Name', 'Milonga brava').
+playinglist_parameter_cacheDB('5420846', 'SingerList', 'Maida, Roberto').
+playinglist_parameter_cacheDB('5420846', 'Genre', 'Milonga').
+playinglist_parameter_cacheDB('5420846', mcVizType, traditional).
+playinglist_parameter_cacheDB('17770148', tvizOrchestra, 'Luciano Michelini').
+playinglist_parameter_cacheDB('17770148', 'Name', 'Curb Your Enthusiasm').
+playinglist_parameter_cacheDB('17770148', 'SingerList', '').
+playinglist_parameter_cacheDB('17770148', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17770148', mcVizType, break).
+playinglist_parameter_cacheDB('13187396', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187396', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187396', 'SingerList', '').
+playinglist_parameter_cacheDB('13187396', 'Genre', '').
+playinglist_parameter_cacheDB('13187396', mcVizType, break).
+playinglist_parameter_cacheDB('2458393', tvizOrchestra, 'Fresedo').
+playinglist_parameter_cacheDB('2458393', 'Name', 'Siempre es carnaval').
+playinglist_parameter_cacheDB('2458393', 'SingerList', 'Ray, Roberto').
+playinglist_parameter_cacheDB('2458393', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458393', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422415', tvizOrchestra, 'Fresedo').
+playinglist_parameter_cacheDB('5422415', 'Name', 'Cordobesita').
+playinglist_parameter_cacheDB('5422415', 'SingerList', 'Ray, Roberto').
+playinglist_parameter_cacheDB('5422415', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422415', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422444', tvizOrchestra, 'Fresedo').
+playinglist_parameter_cacheDB('5422444', 'Name', 'Isla de capri').
+playinglist_parameter_cacheDB('5422444', 'SingerList', 'Ray, Roberto').
+playinglist_parameter_cacheDB('5422444', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422444', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458389', tvizOrchestra, 'Fresedo').
+playinglist_parameter_cacheDB('2458389', 'Name', 'Niebla del riachuelo').
+playinglist_parameter_cacheDB('2458389', 'SingerList', 'Ray, Roberto').
+playinglist_parameter_cacheDB('2458389', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458389', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458426', tvizOrchestra, 'Fresedo').
+playinglist_parameter_cacheDB('2458426', 'Name', 'En la huella del dolor').
+playinglist_parameter_cacheDB('2458426', 'SingerList', 'Ray, Roberto').
+playinglist_parameter_cacheDB('2458426', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458426', mcVizType, traditional).
+playinglist_parameter_cacheDB('17769815', tvizOrchestra, 'Best TV and Movie Themes').
+playinglist_parameter_cacheDB('17769815', 'Name', 'Beverly Hills Cop Axel F').
+playinglist_parameter_cacheDB('17769815', 'SingerList', '').
+playinglist_parameter_cacheDB('17769815', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17769815', mcVizType, break).
+playinglist_parameter_cacheDB('13187388', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187388', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187388', 'SingerList', '').
+playinglist_parameter_cacheDB('13187388', 'Genre', '').
+playinglist_parameter_cacheDB('13187388', mcVizType, break).
+playinglist_parameter_cacheDB('10300823', tvizOrchestra, 'De Angelis').
+playinglist_parameter_cacheDB('10300823', 'Name', 'Hoy al recordarla').
+playinglist_parameter_cacheDB('10300823', 'SingerList', 'Martel, Julio').
+playinglist_parameter_cacheDB('10300823', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300823', mcVizType, traditional).
+playinglist_parameter_cacheDB('10300824', tvizOrchestra, 'De Angelis').
+playinglist_parameter_cacheDB('10300824', 'Name', 'Oro muerto (Jirón porteño)').
+playinglist_parameter_cacheDB('10300824', 'SingerList', 'Martel, Julio').
+playinglist_parameter_cacheDB('10300824', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300824', mcVizType, traditional).
+playinglist_parameter_cacheDB('10300679', tvizOrchestra, 'De Angelis').
+playinglist_parameter_cacheDB('10300679', 'Name', 'Compadrón').
+playinglist_parameter_cacheDB('10300679', 'SingerList', 'Dante, Carlos').
+playinglist_parameter_cacheDB('10300679', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300679', mcVizType, traditional).
+playinglist_parameter_cacheDB('10300683', tvizOrchestra, 'De Angelis').
+playinglist_parameter_cacheDB('10300683', 'Name', 'Gloria').
+playinglist_parameter_cacheDB('10300683', 'SingerList', 'Dante, Carlos').
+playinglist_parameter_cacheDB('10300683', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10300683', mcVizType, traditional).
+playinglist_parameter_cacheDB('10341089', tvizOrchestra, 'Sarah Brightman').
+playinglist_parameter_cacheDB('10341089', 'Name', 'Hijo de la luna').
+playinglist_parameter_cacheDB('10341089', 'SingerList', '').
+playinglist_parameter_cacheDB('10341089', 'Genre', 'New Age - Vocal').
+playinglist_parameter_cacheDB('10341089', mcVizType, nontraditional).
+playinglist_parameter_cacheDB('4368021', tvizOrchestra, 'Cirque du Soleil').
+playinglist_parameter_cacheDB('4368021', 'Name', 'Pearl').
+playinglist_parameter_cacheDB('4368021', 'SingerList', '').
+playinglist_parameter_cacheDB('4368021', 'Genre', 'Alternative Waltz').
+playinglist_parameter_cacheDB('4368021', mcVizType, nontraditional).
+playinglist_parameter_cacheDB('2457108', tvizOrchestra, 'Color Tango').
+playinglist_parameter_cacheDB('2457108', 'Name', 'Tu pálida voz').
+playinglist_parameter_cacheDB('2457108', 'SingerList', '').
+playinglist_parameter_cacheDB('2457108', 'Genre', 'Vals?').
+playinglist_parameter_cacheDB('2457108', mcVizType, nontraditional).
+playinglist_parameter_cacheDB('17377473', tvizOrchestra, 'Glee').
+playinglist_parameter_cacheDB('17377473', 'Name', 'Glee Scene 1 - eery, with suspension').
+playinglist_parameter_cacheDB('17377473', 'SingerList', '').
+playinglist_parameter_cacheDB('17377473', 'Genre', 'Other').
+playinglist_parameter_cacheDB('17377473', mcVizType, break).
+playinglist_parameter_cacheDB('13187394', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187394', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187394', 'SingerList', '').
+playinglist_parameter_cacheDB('13187394', 'Genre', '').
+playinglist_parameter_cacheDB('13187394', mcVizType, break).
+playinglist_parameter_cacheDB('24535357', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24535357', 'Name', 'Sinsabor').
+playinglist_parameter_cacheDB('24535357', 'SingerList', 'Lagos, Horacio; Morales, Lita').
+playinglist_parameter_cacheDB('24535357', 'Genre', tango).
+playinglist_parameter_cacheDB('24535357', mcVizType, traditional).
+playinglist_parameter_cacheDB('24536391', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24536391', 'Name', 'Carnaval De Mi Barrio').
+playinglist_parameter_cacheDB('24536391', 'SingerList', 'Gavioli, Romeo; Lagos, Horacio; Morales, Lita').
+playinglist_parameter_cacheDB('24536391', 'Genre', tango).
+playinglist_parameter_cacheDB('24536391', mcVizType, traditional).
+playinglist_parameter_cacheDB('24535387', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24535387', 'Name', 'La Melodia Del Corazón').
+playinglist_parameter_cacheDB('24535387', 'SingerList', 'Gavioli, Romeo').
+playinglist_parameter_cacheDB('24535387', 'Genre', tango).
+playinglist_parameter_cacheDB('24535387', mcVizType, traditional).
+playinglist_parameter_cacheDB('24536392', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('24536392', 'Name', 'Mi Serenata').
+playinglist_parameter_cacheDB('24536392', 'SingerList', 'Gavioli, Romeo').
+playinglist_parameter_cacheDB('24536392', 'Genre', tango).
+playinglist_parameter_cacheDB('24536392', mcVizType, traditional).
+playinglist_parameter_cacheDB('17770024', tvizOrchestra, 'DeadAlready').
+playinglist_parameter_cacheDB('17770024', 'Name', 'AmericanBeauty').
+playinglist_parameter_cacheDB('17770024', 'SingerList', '').
+playinglist_parameter_cacheDB('17770024', 'Genre', 'Other').
+playinglist_parameter_cacheDB('17770024', mcVizType, break).
+playinglist_parameter_cacheDB('13187390', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187390', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187390', 'SingerList', '').
+playinglist_parameter_cacheDB('13187390', 'Genre', '').
+playinglist_parameter_cacheDB('13187390', mcVizType, break).
+playinglist_parameter_cacheDB('10301317', tvizOrchestra, 'Demare').
+playinglist_parameter_cacheDB('10301317', 'Name', 'Una emocion').
+playinglist_parameter_cacheDB('10301317', 'SingerList', 'Berón, Raúl').
+playinglist_parameter_cacheDB('10301317', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301317', mcVizType, traditional).
+playinglist_parameter_cacheDB('10301311', tvizOrchestra, 'Demare').
+playinglist_parameter_cacheDB('10301311', 'Name', 'Que solo estoy').
+playinglist_parameter_cacheDB('10301311', 'SingerList', 'Berón, Raúl').
+playinglist_parameter_cacheDB('10301311', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301311', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421885', tvizOrchestra, 'Demare').
+playinglist_parameter_cacheDB('5421885', 'Name', 'Oigo tu voz').
+playinglist_parameter_cacheDB('5421885', 'SingerList', 'Berón, Raúl').
+playinglist_parameter_cacheDB('5421885', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5421885', mcVizType, traditional).
+playinglist_parameter_cacheDB('10301344', tvizOrchestra, 'Demare').
+playinglist_parameter_cacheDB('10301344', 'Name', 'Cancion de rango (pa\' que se callen)').
+playinglist_parameter_cacheDB('10301344', 'SingerList', 'Arrieta, Roberto').
+playinglist_parameter_cacheDB('10301344', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('10301344', mcVizType, traditional).
+playinglist_parameter_cacheDB('17770116', tvizOrchestra, '').
+playinglist_parameter_cacheDB('17770116', 'Name', seinfeld).
+playinglist_parameter_cacheDB('17770116', 'SingerList', '').
+playinglist_parameter_cacheDB('17770116', 'Genre', '').
+playinglist_parameter_cacheDB('17770116', mcVizType, break).
+playinglist_parameter_cacheDB('13185643', tvizOrchestra, 'Chapter Seperator').
+playinglist_parameter_cacheDB('13185643', 'Name', '¦¦ CHAPTER 3 ¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13185643', 'SingerList', '').
+playinglist_parameter_cacheDB('13185643', 'Genre', '').
+playinglist_parameter_cacheDB('13185643', mcVizType, break).
+playinglist_parameter_cacheDB('13187322', tvizOrchestra, 'Milonga Tanda').
+playinglist_parameter_cacheDB('13187322', 'Name', '¦¦¦ Milonga ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187322', 'SingerList', '').
+playinglist_parameter_cacheDB('13187322', 'Genre', '').
+playinglist_parameter_cacheDB('13187322', mcVizType, break).
+playinglist_parameter_cacheDB('5420959', tvizOrchestra, 'Donato').
+playinglist_parameter_cacheDB('5420959', 'Name', 'Cara negra').
+playinglist_parameter_cacheDB('5420959', 'SingerList', 'Lagos, Horacio').
+playinglist_parameter_cacheDB('5420959', 'Genre', 'Milonga').
+playinglist_parameter_cacheDB('5420959', mcVizType, traditional).
+playinglist_parameter_cacheDB('5421041', tvizOrchestra, 'Tanturi').
+playinglist_parameter_cacheDB('5421041', 'Name', 'Mozo guapo').
+playinglist_parameter_cacheDB('5421041', 'SingerList', 'Castillo, Alberto').
+playinglist_parameter_cacheDB('5421041', 'Genre', 'Milonga').
+playinglist_parameter_cacheDB('5421041', mcVizType, traditional).
+playinglist_parameter_cacheDB('10307401', tvizOrchestra, 'Firpo').
+playinglist_parameter_cacheDB('10307401', 'Name', 'La mulita').
+playinglist_parameter_cacheDB('10307401', 'SingerList', 'IsInstrumental').
+playinglist_parameter_cacheDB('10307401', 'Genre', 'Milonga').
+playinglist_parameter_cacheDB('10307401', mcVizType, traditional).
+playinglist_parameter_cacheDB('17731596', tvizOrchestra, 'Best TV and Movie Themes').
+playinglist_parameter_cacheDB('17731596', 'Name', 'Knight Rider').
+playinglist_parameter_cacheDB('17731596', 'SingerList', '').
+playinglist_parameter_cacheDB('17731596', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17731596', mcVizType, break).
+playinglist_parameter_cacheDB('13185644', tvizOrchestra, 'Chapter Seperator').
+playinglist_parameter_cacheDB('13185644', 'Name', '¦¦ CHAPTER 4 ¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13185644', 'SingerList', '').
+playinglist_parameter_cacheDB('13185644', 'Genre', '').
+playinglist_parameter_cacheDB('13185644', mcVizType, break).
+playinglist_parameter_cacheDB('13214603', tvizOrchestra, 'García').
+playinglist_parameter_cacheDB('13214603', 'Name', 'El Once (A divertirse)').
+playinglist_parameter_cacheDB('13214603', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('13214603', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('13214603', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422513', tvizOrchestra, 'García').
+playinglist_parameter_cacheDB('5422513', 'Name', 'Adiós mi corazón').
+playinglist_parameter_cacheDB('5422513', 'SingerList', 'Rojas, Alfredo').
+playinglist_parameter_cacheDB('5422513', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422513', mcVizType, traditional).
+playinglist_parameter_cacheDB('13214606', tvizOrchestra, 'García').
+playinglist_parameter_cacheDB('13214606', 'Name', 'Tristeza marina').
+playinglist_parameter_cacheDB('13214606', 'SingerList', 'Rojas, Alfredo').
+playinglist_parameter_cacheDB('13214606', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('13214606', mcVizType, traditional).
+playinglist_parameter_cacheDB('13214605', tvizOrchestra, 'García').
+playinglist_parameter_cacheDB('13214605', 'Name', 'Junto a tu corazón').
+playinglist_parameter_cacheDB('13214605', 'SingerList', 'Rojas, Alfredo').
+playinglist_parameter_cacheDB('13214605', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('13214605', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422514', tvizOrchestra, 'García').
+playinglist_parameter_cacheDB('5422514', 'Name', 'Sólo compasión').
+playinglist_parameter_cacheDB('5422514', 'SingerList', 'Rojas, Alfredo').
+playinglist_parameter_cacheDB('5422514', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422514', mcVizType, traditional).
+playinglist_parameter_cacheDB('13187392', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187392', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187392', 'SingerList', '').
+playinglist_parameter_cacheDB('13187392', 'Genre', '').
+playinglist_parameter_cacheDB('13187392', mcVizType, break).
+playinglist_parameter_cacheDB('23926327', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('23926327', 'Name', 'No Está').
+playinglist_parameter_cacheDB('23926327', 'SingerList', 'Podestá, Alberto').
+playinglist_parameter_cacheDB('23926327', 'Genre', tango).
+playinglist_parameter_cacheDB('23926327', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422121', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('5422121', 'Name', 'Va a cantar un ruiseñor').
+playinglist_parameter_cacheDB('5422121', 'SingerList', 'Podestá, Alberto').
+playinglist_parameter_cacheDB('5422121', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422121', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422102', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('5422102', 'Name', 'Al compás del corazón (Late un corazón)').
+playinglist_parameter_cacheDB('5422102', 'SingerList', 'Podestá, Alberto').
+playinglist_parameter_cacheDB('5422102', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422102', mcVizType, traditional).
+playinglist_parameter_cacheDB('23926329', tvizOrchestra, 'Di Sarli').
+playinglist_parameter_cacheDB('23926329', 'Name', 'Racing Club').
+playinglist_parameter_cacheDB('23926329', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('23926329', 'Genre', tango).
+playinglist_parameter_cacheDB('23926329', mcVizType, traditional).
+playinglist_parameter_cacheDB('9794799', tvizOrchestra, 'Swingle Singers').
+playinglist_parameter_cacheDB('9794799', 'Name', '5a - eine kleine nachtmusik (with tension long)').
+playinglist_parameter_cacheDB('9794799', 'SingerList', '').
+playinglist_parameter_cacheDB('9794799', 'Genre', 'Other').
+playinglist_parameter_cacheDB('9794799', mcVizType, break).
+playinglist_parameter_cacheDB('13187407', tvizOrchestra, 'Tango Tanda').
+playinglist_parameter_cacheDB('13187407', 'Name', '¦¦¦ Tango ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('13187407', 'SingerList', '').
+playinglist_parameter_cacheDB('13187407', 'Genre', '').
+playinglist_parameter_cacheDB('13187407', mcVizType, break).
+playinglist_parameter_cacheDB('2458662', tvizOrchestra, 'Pugliese').
+playinglist_parameter_cacheDB('2458662', 'Name', 'Rondando tu esquina').
+playinglist_parameter_cacheDB('2458662', 'SingerList', 'Chanel, Roberto').
+playinglist_parameter_cacheDB('2458662', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458662', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458653', tvizOrchestra, 'Pugliese').
+playinglist_parameter_cacheDB('2458653', 'Name', 'Farol').
+playinglist_parameter_cacheDB('2458653', 'SingerList', 'Chanel, Roberto').
+playinglist_parameter_cacheDB('2458653', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458653', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458487', tvizOrchestra, 'Pugliese').
+playinglist_parameter_cacheDB('2458487', 'Name', 'El sueño del pibe').
+playinglist_parameter_cacheDB('2458487', 'SingerList', 'Chanel, Roberto').
+playinglist_parameter_cacheDB('2458487', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458487', mcVizType, traditional).
+playinglist_parameter_cacheDB('2458650', tvizOrchestra, 'Pugliese').
+playinglist_parameter_cacheDB('2458650', 'Name', 'Corrientes y esmeralda').
+playinglist_parameter_cacheDB('2458650', 'SingerList', 'Chanel, Roberto').
+playinglist_parameter_cacheDB('2458650', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2458650', mcVizType, traditional).
+playinglist_parameter_cacheDB('2847797', tvizOrchestra, 'Bridget Jones').
+playinglist_parameter_cacheDB('2847797', 'Name', 'It\'s Rainin Men').
+playinglist_parameter_cacheDB('2847797', 'SingerList', '').
+playinglist_parameter_cacheDB('2847797', 'Genre', 'Film - Pop').
+playinglist_parameter_cacheDB('2847797', mcVizType, break).
+playinglist_parameter_cacheDB('2457203', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('2457203', 'Name', 'El encopao').
+playinglist_parameter_cacheDB('2457203', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('2457203', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457203', mcVizType, traditional).
+playinglist_parameter_cacheDB('5422890', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('5422890', 'Name', 'La VI llegar').
+playinglist_parameter_cacheDB('5422890', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('5422890', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('5422890', mcVizType, traditional).
+playinglist_parameter_cacheDB('2457292', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('2457292', 'Name', 'Tu!... el cielo y tu!').
+playinglist_parameter_cacheDB('2457292', 'SingerList', 'Moreno, Armando').
+playinglist_parameter_cacheDB('2457292', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('2457292', mcVizType, traditional).
+playinglist_parameter_cacheDB('21867379', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('21867379', 'Name', 'La cumparsita').
+playinglist_parameter_cacheDB('21867379', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('21867379', 'Genre', 'Tango').
+playinglist_parameter_cacheDB('21867379', mcVizType, traditional).
+playinglist_parameter_cacheDB('17731553', tvizOrchestra, '100 High Quality Ringtones').
+playinglist_parameter_cacheDB('17731553', 'Name', 'That\'s All Folks').
+playinglist_parameter_cacheDB('17731553', 'SingerList', '').
+playinglist_parameter_cacheDB('17731553', 'Genre', 'Soundtrack').
+playinglist_parameter_cacheDB('17731553', mcVizType, break).
+playinglist_parameter_cacheDB('2850740', tvizOrchestra, 'Queen').
+playinglist_parameter_cacheDB('2850740', 'Name', 'Don\'t Stop Me Now').
+playinglist_parameter_cacheDB('2850740', 'SingerList', '').
+playinglist_parameter_cacheDB('2850740', 'Genre', 'Rock').
+playinglist_parameter_cacheDB('2850740', mcVizType, break).
+playinglist_parameter_cacheDB('17643148', tvizOrchestra, 'Rodríguez').
+playinglist_parameter_cacheDB('17643148', 'Name', 'Danza Hungara No5').
+playinglist_parameter_cacheDB('17643148', 'SingerList', 'Instrumental').
+playinglist_parameter_cacheDB('17643148', 'Genre', 'Fox Trot').
+playinglist_parameter_cacheDB('17643148', mcVizType, traditional).
+playinglist_parameter_cacheDB('3131293', tvizOrchestra, 'Rodgers;Hammerstein').
+playinglist_parameter_cacheDB('3131293', 'Name', 'So Long, Farewell').
+playinglist_parameter_cacheDB('3131293', 'SingerList', '').
+playinglist_parameter_cacheDB('3131293', 'Genre', 'Musical - Film').
+playinglist_parameter_cacheDB('3131293', mcVizType, break).
+playinglist_parameter_cacheDB('14567924', tvizOrchestra, 'Chapter Seperator').
+playinglist_parameter_cacheDB('14567924', 'Name', '¦¦ THE END ¦¦¦¦¦¦¦¦¦¦¦¦').
+playinglist_parameter_cacheDB('14567924', 'SingerList', '').
+playinglist_parameter_cacheDB('14567924', 'Genre', '').
+playinglist_parameter_cacheDB('14567924', mcVizType, break).
+

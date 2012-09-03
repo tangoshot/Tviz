@@ -1,0 +1,938 @@
+def chdir ():
+    '''
+    Change the working direcotry to 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/chdir?p=pass&dir=c:\My%20Music
+    '''
+    
+
+def delete ():
+    '''
+    Clears the contents of the play list.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success, 0 otherwise.
+    Example
+    http://localhost:4800/delete?p=pass
+    '''
+
+
+def deletepos ():
+    '''
+    Deletes the playlist item at index 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success, 
+    0 otherwise.
+    Example
+    http://localhost:4800/deletepos?p=pass&index=0
+    '''
+
+
+def enqueuefile ():
+    '''
+    Append a file to the playlist. 
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/enqueuefile?p=pass&title=songname&file=c:\My%20Music\Song.mp3
+    '''
+
+
+def enqueueurl ():
+    '''
+    Append a URL to the playlist. 
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/enqueueurl?p=pass&title=songname&url=c:\My%20Music\Song.mp3
+    '''
+
+
+def exec_visual ():
+    '''
+    Launch the current visualization plugin.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success, 
+    0 otherwise.
+    Example
+    http://localhost:4800/exec_visual?p=pass
+    '''
+
+
+def fadeoutandstop ():
+    '''
+    Fades out current song and stops playing.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success, 0 otherwise.
+    Example
+    http://localhost:4800/fadeoutandstop?p=pass
+    '''
+
+
+def flushplaylist ():
+    '''
+    Flushes the playlist cache buffer.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/flushplaylist?p=pass
+    '''
+
+
+def getautoservice ():
+    '''
+    Returns the status the httpQ autostart configuration.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 if the service is set to start automatically.
+    Example
+    http://localhost:4800/getautoservice?p=pass
+    '''
+
+
+def getcurrenttitle ():
+    '''
+    Returns the title of the current song from the winamp window name. Used when the playlist title is not enough.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Song title on success.
+    Example
+    http://localhost:4800/getcurrenttitle?p=pass
+    '''
+
+
+def getdirty ():
+    '''
+    Check the dirty flag for the the current playlist.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    1 if playlist has changed since last setclean. 
+    Example
+    http://localhost:4800/getdirty?p=pass
+    '''
+
+
+def geteqdata ():
+    '''
+    Gets a band of eq data.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    0-9: 0-63 (+20db - -20db). 
+    10 : 0-63 (+20db - -20db). 
+    11 : Zero if disabled, nonzero if enabled. 
+    12 : Zero if disabled, nonzero if enabled.
+    Example
+    http://localhost:4800/geteqdata?p=pass&band=0
+    '''
+
+
+def geteqdatum ():
+    '''
+    Gets all bands of eq data seperated by the specified delimiter.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    0-9: 0-63 (+20db - -20db). 
+    10 : 0-63 (+20db - -20db). 
+    11 : Zero if disabled, nonzero if enabled. 
+    12 : Zero if disabled, nonzero if enabled.
+    Example
+    http://localhost:4800/geteqdatum?p=pass&delim=;
+    '''
+
+def gethash ():
+    '''
+    Get MD5 hash of all filenames in the current playlist.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    MD5 hash.
+    Example
+    http://localhost:4800/gethash?p=pass
+    '''
+
+
+def gethash ():
+    '''
+    Get MD5 hash of the playlist item at index 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    MD5 hash.
+    Example
+    http://localhost:4800/gethash?p=pass&index=0
+    '''
+
+
+def getid3tag ():
+    '''
+    Get Id3v1 Tag information about the current playing song.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/getid3tag?p=pass&tags=t,a,y,g,l,c,r&delim=;
+    '''
+
+def getid3tag ():
+    '''
+    Get Id3v1 Tag information about playlist item at index 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/getid3tag?p=pass&tags=t,a,y,g,l,c,r&delim=;&index=0
+    '''
+
+
+def getid3v2tag ():
+    '''
+    Get Id3v2 Tag information about the current playing song.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/getid3v2tag?p=pass&tags=t,a,y,g,l,c,r,m,s,p,o,i,u,e,b&delim=;
+    '''
+
+def getid3v2tag ():
+    '''
+    Get Id3v2 Tag information about playlist item at index 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/getid3v2tag?p=pass&tags=t,a,y,g,l,c,r,m,s,p,o,i,u,e,b&delim=;&index=0
+    '''
+
+
+def getinfo ():
+    '''
+    Gets info about the current playing song. The value it returns depends on the value of 'info'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Requested info on success. 
+    0 on error.
+    Example
+    http://localhost:4800/getinfo?p=pass&info=0
+    '''
+
+def getlistlength ():
+    '''
+    Get the length of the current playlist, in tracks.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    The length of the current playlist or 0 on error.
+    Example
+    http://localhost:4800/getlistlength?p=pass
+    '''
+
+def getlistpos ():
+    '''
+    Gets the current index of the play list. 
+    note: The list is zero indexed so track 1 is index 0.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    The playlist position.
+    Example
+    http://localhost:4800/getlistpos?p=pass
+    '''
+
+def getmpeginfo ():
+    '''
+    Get Mpeg information about the current playing song.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/getmpeginfo?p=pass&info=s,t,v,l,f,b,m,c,y,o,e&delim=;
+    '''
+
+
+def getmpeginfo ():
+    '''
+    Get Mpeg information about playlist item at index 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/getmpeginfo?p=pass&info=s,t,v,l,f,b,m,c,y,o,e&delim=;&index=0
+    '''
+
+
+def getoutputtime ():
+    '''
+    Returns the position in milliseconds of the current song, or the song length, in seconds.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    -1 if not playing. 
+    0 on error.
+    Example
+    http://localhost:4800/getoutputtime?p=pass&frmt=1
+    '''
+
+def getplaylistfile ():
+    '''
+    Returns the filename of the current playing song.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Filename of track on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getplaylistfile?p=pass
+    '''
+
+
+def getplaylistfile ():
+    '''
+    Returns the filename of the playlist entry at index 'argument'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Filename of track on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getplaylistfile?p=pass&index=0
+    '''
+
+
+def getplaylistfilelist ():
+    '''
+    Returns a list of all the filenames in the playlist seperated by the specified delimiter.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    List of filenames on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getplaylistfilelist?p=pass&delim=;
+    '''
+
+
+def getplaylisttitle ():
+    '''
+    Returns the title of the current playing song.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Title of track on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getplaylisttitle?p=pass
+    '''
+
+
+def getplaylisttitle ():
+    '''
+    Returns the title of the playlist entry at index 'index'.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Title of track on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getplaylisttitle?p=pass&index=0
+    '''
+
+
+def getplaylisttitlelist ():
+    '''
+    Returns a list of all the titles in the playlist seperated by the specified delimiter.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    List of track titles on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getplaylisttitlelist?p=pass&delim=;
+    '''
+
+
+def getversion ():
+    '''
+    Get the current version of the winamp player.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Version of winamp, or 0 on error.
+    Example
+    http://localhost:4800/getversion?p=pass
+    '''
+
+
+def getvolume ():
+    '''
+    Get the volume level.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    volume level on success. 
+    0 otherwise.
+    Example
+    http://localhost:4800/getvolume?p=pass
+    '''
+
+
+def hasid3tag ():
+    '''
+    Determine if the current playing song contains ID3v1 Tag information.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/hasid3tag?p=pass
+    '''
+
+
+def hasid3tag ():
+    '''
+    Determine if playlist item at index 'argument' contains ID3v1 Tag information.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/hasid3tag?p=pass&index=0
+    '''
+
+
+def hasid3v2tag ():
+    '''
+    Determine if the current playing song contains ID3v2 Tag information.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/hasid3v2tag?p=pass
+    '''
+
+def hasid3v2tag ():
+    '''
+    Determine if playlist item at index 'argument' contains ID3v2 Tag information.
+    
+    Paramater Description
+    p
+    The password.
+    Return Value
+    Example
+    http://localhost:4800/hasid3v2tag?p=pass&index=0
+    '''
+
+
+internet
+'''
+Checks for an internet conection.
+
+Paramater Description
+p
+The password.
+Return Value
+1 if internect conecton exists.
+Example
+http://localhost:4800/internet?p=pass
+'''
+
+
+isplaying
+'''
+Get the playing status of winamp player.
+
+Paramater Description
+p
+The password.
+Return Value
+1 = playing 
+0 = not playing 
+3 = paused
+Example
+http://localhost:4800/isplaying?p=pass
+'''
+
+
+jumptotime
+'''
+Sets the position in milliseconds of the current song (approximately) to 'argument'.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/jumptotime?p=pass&ms=0
+'''
+
+
+next
+'''
+Like clicking on it.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success, 0 otherwise.
+Example
+http://localhost:4800/next?p=pass
+'''
+
+
+pause
+'''
+Like clicking on it.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success, 0 otherwise.
+Example
+http://localhost:4800/pause?p=pass
+'''
+
+
+play
+'''
+Like clicking on it.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success, 0 otherwise.
+Example
+http://localhost:4800/play?p=pass
+'''
+
+
+playfile
+'''
+Appends a file to the playlist. 
+The file must be in the current working directory or pass in the directory along with the filename as the argument.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/playfile?p=pass&file=c:\My%20Music\Song.mp3
+'''
+
+
+playurl
+'''
+Appends a URL to the playlist. 
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/playurl?p=pass&url=http://localhost/song.mp3
+'''
+
+
+prev
+'''
+Like clicking on it.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success, 0 otherwise.
+Example
+http://localhost:4800/prev?p=pass
+'''
+
+
+repeat
+'''
+Toggle repeat on and off.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise
+Example
+http://localhost:4800/repeat?p=pass&enable=0
+'''
+
+
+repeat_status
+'''
+Gets the status of the repeat button.
+
+Paramater Description
+p
+The password.
+Return Value
+1 if repeat is on. 
+0 if repeat is off.
+Example
+http://localhost:4800/repeat_status?p=pass
+'''
+
+
+restart
+'''
+Restarts winamp and httpQ server. 
+note: If the httpQ service is not set to start automatically, the httpQ server will not continue to accept connections.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success.
+Example
+http://localhost:4800/restart?p=pass
+'''
+
+
+setautoservice
+'''
+Returns the status the httpQ autostart configuration.
+
+Paramater Description
+p
+The password.
+Return Value
+1 if the service is set to start automatically.
+Example
+http://localhost:4800/setautoservice?p=pass&enable=1
+'''
+
+
+setclean
+'''
+Set the clean flag for the the current playlist.
+
+Paramater Description
+p
+The password.
+Return Value
+Example
+http://localhost:4800/setclean?p=pass
+'''
+
+
+seteqdata
+'''
+Sets the eq data at 'band' to 'level'.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/seteqdata?p=pass&band=0&level=31
+'''
+
+
+seteqdatum
+'''
+Sets all bands of eq data to the specified 'levels'.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/seteqdatum?p=pass&levels=31,31,31,31,31,31,31,31,31,31,31,1,1
+'''
+
+
+setplaylistpos
+'''
+Sets the playlsit position to 'argument'.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/setplaylistpos?p=pass&index=0
+'''
+
+
+setvolume
+'''
+Set the volume level.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise
+Example
+http://localhost:4800/setvolume?p=pass&level=0
+'''
+
+
+shoutcast_connect
+'''
+Attempts to start the shoutcast server.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success.
+Example
+http://localhost:4800/shoutcast_connect?p=pass
+'''
+
+
+shoutcast_status
+'''
+Attempts to retrieve status from shoutcast server.
+
+Paramater Description
+p
+The password.
+Return Value
+Status of shoutcast server if successful 
+0 otherwise.
+Example
+http://localhost:4800/shoutcast_status?p=pass
+'''
+
+
+shuffle
+'''
+Toggle shuffle on and off.
+
+Paramater Description
+p
+The password.
+Return Value
+1 if shuffle is on. 
+0 otherwise
+Example
+http://localhost:4800/shuffle?p=pass&enable=0
+'''
+
+
+shuffle_status
+'''
+Gets the status of shuffle button.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/shuffle_status?p=pass
+'''
+
+
+stop
+'''
+Like clicking on it.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success, 0 otherwise.
+Example
+http://localhost:4800/stop?p=pass
+'''
+
+
+swappos
+'''
+Swap the playlist items at indices 'from' and 'to'.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success, 
+0 otherwise.
+Example
+http://localhost:4800/swappos?p=pass&from=0&to=1
+'''
+
+
+updatecurrenttitle
+'''
+Updates the information about the current title.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success.
+Example
+http://localhost:4800/updatecurrenttitle?p=pass
+'''
+
+
+validate_password
+'''
+Check a given string against the real password.
+
+Paramater Description
+pass
+a string representing the password to validate.
+Return Value
+1 if passwords match. 
+0 if passwords do not match.
+Example
+http://localhost:4800/validate_password?pass=pass
+'''
+
+
+volumedown
+'''
+Turns down the volume.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/volumedown?p=pass
+'''
+
+
+volumeup
+'''
+Turns up the volume.
+
+Paramater Description
+p
+The password.
+Return Value
+1 on success. 
+0 otherwise.
+Example
+http://localhost:4800/volumeup?p=pass
+'''
+
+
+
+ 
+'''
+©1999-2003 Kosta Arvanitis
+'''
