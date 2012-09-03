@@ -3,7 +3,7 @@ Created on Aug 5, 2012
 @author: tolga
 '''
 from tutil.string import normal_wordbag
-from tviz.features import TvizSongFeatures
+from tviz.feature_factory import TvizSongFeatures
 # from tviz.tvizdb import TvizSongFeatures
 from paths import SETTINGS
 
@@ -17,17 +17,11 @@ orchestra_image_folder = image_folder + 'Orchestra images (k)'
 singer_image_folder = image_folder + 'Singer images (k)'
 label_image_folder = image_folder + 'Song images (k)'
 
-IMPORTED_TAG_NAMES = [        
-        'Name',
-        'Orchestra',
-        'Genre',
-        'Singer',
-        'Key',
-        'Subgroup']
+
         
 class MySongFeatureFactory():
     
-    def infer(self, tags):
+    def tags2features(self, tags):
         obj = TvizSongFeatures()
         
         def tag(tagname):
@@ -59,6 +53,6 @@ if __name__=='__main__':
     tags = {'Orchestra':'Canaro', 'Singer':'Fama;Podesta;Maida', 'Name':'Alma', 'Genre':'milonga candombe', 'Key':'124252', 'Subgroup':'Traditional'}
     
     factory = MySongFeatureFactory()
-    print factory.infer(tags)
+    print factory.tags2features(tags)
     
     

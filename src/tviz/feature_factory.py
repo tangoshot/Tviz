@@ -21,15 +21,20 @@ Created on Aug 11, 2012
 '''
 
 class Features (ClassPPrinter):
-    featurenames = {
+    features = {
         'name', 
         'genre',
         'isbreak',
         'orchestra',
         'singers',
-#        'KEY',  #TODO: will be removed
+        'key',
+        'filename',
         'isinstrumental'}
     
+    
+    def __init__(self, fdict = {}):
+        for feature in self.features:
+            setattr(self, feature, fdict[feature])
    
     
     
@@ -84,7 +89,7 @@ class TvizTandaFeatures(TvizSongFeatures):
 class UserOptions (ClassPPrinter):
     # TODO: add type checking to static features
 
-    __dynamic_features = dict(
+    features = dict(
         USER = str,
         PWD = str,
         PORT = int,
@@ -97,7 +102,7 @@ class UserOptions (ClassPPrinter):
         localdict = {}
         execfile(sfile , globals(), localdict)
         
-        for feature in self.__dynamic_features:
+        for feature in self.features:
             try:
                 setattr(self, feature, localdict[feature])
             except:
@@ -115,28 +120,27 @@ class UserOptions (ClassPPrinter):
         self.PLAYER =      dictionary['PLAYER']                
         self.IMAGE_FOLDER = dictionary['IMAGE_FOLDER']
 
-
     
 class UserFeatureFactory (ClassPPrinter):
 
     # TODO: add type checking and coverage checking to dynamic features
-    FEATURE_TAGS = []
+    tagnames = []
 
-    __dynamic_features = {
+    features = {
         'NAME', 
         'GENRE',
         'ISBREAK',
         'ORCHESTRA',
         'SINGERS',
-#        'KEY',  #TODO: will be removed
         'ISINSTRUMENTAL'}
+    
     
     def __init__(self, settings):
         self.__user_mapping_file = settingsfile(settings)
         usermapping = open(self.__user_mapping_file, 'r').read()
-        self.FEATURE_TAGS = self.__parse_tags(usermapping)
+        self.tagnames = self.__parse_tags(usermapping)
         
-    def infer(self, tags):
+    def tags2features(self, tags):
         ''' 
         Infers feature values give user definitions and a set of song tags
         '''
@@ -155,16 +159,15 @@ class UserFeatureFactory (ClassPPrinter):
         sfile = self.__user_mapping_file
         execfile(sfile, globals(), localdict)
 
-        out = Features()
+        out = {}
 
-        for feature in self.__dynamic_features:
+        for feature in self.features:
             try:
-                setattr(out, feature.lower(), localdict[feature])
+                out[feature.lower()] = localdict[feature]
             except:
                 raise Exception('Missing feature "{feature}" in user tagging file: {file}'.format(
                     feature = feature,
                     file = sfile))
-                
         return out
    
     def __parse_tags (self, txt):
@@ -186,8 +189,6 @@ class UserFeatureFactory (ClassPPrinter):
         out = list(set(out))
         
         return out
-     
-
         
 if __name__=='__main__':
     tags = {'Orchestra':'Canaro', 'Singer':'Fama;Podesta;Maida', 'Name':'Alma', 'Genre':'milonga candombe', 'Key':'124252', 'Subgroup':'Traditional'}

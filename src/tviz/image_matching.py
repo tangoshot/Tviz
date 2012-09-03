@@ -17,28 +17,29 @@ class ImageDb():
     _imageexts = frozenset(['gif', 'jpg', 'bmp', 'gif', 'jpg', 'jpeg', 'png', 'webp'])
     _db = {}
     
-    def __init__(self):
-        self.reset()
+    def __init__(self, options):
+        self.reset(options)
     
     def __str__(self):
         
             return '\n'.join([str(key) + ' : ' + str(self._db[key]) for key in self._db])
 
-    def reset(self):
-        for imagefolder in self._imagefolders:
-            for directory, _subdirs, files in os.walk(imagefolder):
-                for f in files:
-                    imagefile = os.path.join(directory,f) 
-                    
-                    base = os.path.basename(f)
-                    
-                    rawwordbag = normal_wordbag(base)
-                    
-                    if rawwordbag & self._imageexts != []:
-                        wordbag = rawwordbag - self._imageexts
-                        # print wordbag,  imagefile
-                        self._db [wordbag] = imagefile 
-                        # for each word bag, only one image file is stored.
+    def reset(self, options):
+        
+        #for imagefolder in self._imagefolders:
+        for directory, _subdirs, files in os.walk(options.IMAGE_FOLDER):
+            for f in files:
+                imagefile = os.path.join(directory,f) 
+                
+                base = os.path.basename(f)
+                
+                rawwordbag = normal_wordbag(base)
+                
+                if rawwordbag & self._imageexts != []:
+                    wordbag = rawwordbag - self._imageexts
+                    # print wordbag,  imagefile
+                    self._db [wordbag] = imagefile 
+                    # for each word bag, only one image file is stored.
             
     # TODO: implement best match
     def find(self, input):

@@ -7,7 +7,7 @@ from time import sleep
 
 from tviz.feature_factory import UserFeatureFactory, UserOptions
 from tviz.http_connection import HttpClient
-from tviz.tvizdb import FeatureDB, TvizTanda
+from tviz.tvizdb import TvizDB, TvizTanda
 from tviz.TvizRenderer import TvizRenderer
 from tviz.image_matching import ImageDb
 
@@ -24,6 +24,7 @@ class TvizDriver:
     
     def __init__(self, options_file, mapping_file):
         featurefactory = self._featurefactory = UserFeatureFactory(mapping_file)
+        
         options = self._options = UserOptions(options_file)
         
         print "Feature Factory"
@@ -43,7 +44,7 @@ class TvizDriver:
             print 'Valid players are: jriver'
             quit()
 
-        self._db = FeatureDB(player = player, 
+        self._db = TvizDB(player = player, 
                              featurefactory = featurefactory)
         
         self.playinglist = self._db._playinglist
@@ -66,6 +67,7 @@ class TvizDriver:
     def danceableTanda(self):
         tanda = self._db.currentTanda()
         
+        
         if not tanda.isbreak:
             tanda.isnow = True
             return tanda
@@ -81,26 +83,33 @@ class TvizDriver:
 
 def runtviz():
     
+    tviz = TvizDriver('user_options', 'user_tagging')
     
     while(True):
         sleep(3)    
         
-        tviz = TvizDriver('user_options', 'user_tagging')
         # print tviz.index()
         
         tviz.update()
+
       
         tanda = tviz.danceableTanda()
+
+        
         
         if not tanda:
             continue
         
+        print 
         print '************************************'
         if tanda.isnow:
             print "Current Tanda"
         else:
             print "Next Tanda"
         print '************************************'
+        
+        print tanda
+        print 
         
         tviz.renderTanda(tanda)
 

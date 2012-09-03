@@ -25,7 +25,7 @@ class Song:
     def __init__(self, name, highlighting=False):
         self.name = name.encode('ascii', 'xmlcharrefreplace')
         
-        print name, name.__class__
+        # print name, name.__class__
         
         if highlighting:
             self.highlighting='highlighted'
@@ -85,7 +85,6 @@ class TvizRenderer:
         
 
     def renderTanda(self, tanda, currentsong,imagedb):
-        # print curTanda
 
         songs = self.getSongs(tanda, currentsong.key)
         

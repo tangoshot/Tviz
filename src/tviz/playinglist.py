@@ -2,8 +2,8 @@
 
 from jriver.client import JriverRequest
 import time
-from tviz.settings import IMPORTED_TAG_NAMES
 from pickle import HIGHEST_PROTOCOL
+
 
 '''
 @author Tolga Konik
@@ -17,12 +17,14 @@ class Playlist(object):
     '''
     database that stores a playlist
     '''
-    
-    
+
     _tagdb={}
     _keys=[]
     _index=None
     _len=None
+
+    def __init__(self, importedtags):
+        self.importedtags = importedtags
 
     def current(self):
         return self._index + 1
@@ -31,7 +33,6 @@ class Playlist(object):
         return self._index 
 
     # TODO: add ability to return all tags.
-    
         
     def tagslist(self):
         # print self._keys
@@ -73,14 +74,18 @@ class Playinglist (Playlist):
     '''
     
     _player = None
+    
 
-    def __init__(self, player):
+    def __init__(self, player, usertagnames):
         self._player = player
+        playertags = [player.tagnames[name] for name in player.tagnames]
+        self.importedtags = usertagnames + playertags
+        
 
     def readTags(self):
         t1 = time.time()
         out = {}
-        out = self._player.getPlayinglistTags()
+        out = self._player.getPlayinglistTags(self.importedtags)
         t2 = time.time()
         dt = t2 - t1
         
@@ -156,7 +161,7 @@ class PlayingListPacket (object):
 class Player:
     '''Interface to a player'''
 
-    def getPlayinglistTags(self):
+    def getPlayinglistTags(self, featuretags):
         ''' 
         collects basic playinglist data
         (len, current, keys)
@@ -166,58 +171,69 @@ class Player:
     def getPlayinglistSignature(self):
         raise Exception( "getPlayinglistSignature Interface must be implemented for: " + self)
 
-
-class McPlayer (Player):
-    keytag = 'Key'
-
-    def __init__(self, jriverclient):
-        self.jriverclient = jriverclient
-    
-    def call(self, request):
-        self.jriverclient.call(request) 
+       
+         
         
-        return request.response
-    
-    def getPlayinglistSignature(self):
-        request = JriverRequest()
-        request.playingnowlist_signature()
-        data = self.call(request)
-        
-        out = PlayingListPacket()
-    
-        out.len =   data['len']
-        out.index = data['index']
-        out.keys =  data['keys']
-        
-        return out
 
-    def getPlayinglistTags(self):
-        keytag = self.keytag
-        
-        request = JriverRequest()
-        request.playingnowlist(IMPORTED_TAG_NAMES)
-        tagbaglist = self.call(request)
 
-        out = {}
-        for tagbag in tagbaglist:
-            key = tagbag[keytag]
-
-            for tagname in IMPORTED_TAG_NAMES:
-                if not tagname in tagbag:
-                    tagbag[tagname] = ''
-            
-            out[key] = tagbag
-        
-        return out
+#class McPlayer (Player):
+#    keytag = 'Key'
+#
+#    def __init__(self, jriverclient):
+#        self.jriverclient = jriverclient
+#    
+#    def call(self, request):
+#        self.jriverclient.call(request) 
+#        
+#        return request.response
+#    
+#    def getPlayinglistSignature(self):
+#        request = JriverRequest()
+#        request.playingnowlist_signature()
+#        data = self.call(request)
+#        
+#        out = PlayingListPacket()
+#    
+#        out.len =   data['len']
+#        out.index = data['index']
+#        out.keys =  data['keys']
+#        
+#        return out
+#
+#    def getPlayinglistTags(self):
+#        keytag = self.keytag
+#        
+#        request = JriverRequest()
+#        request.playingnowlist(IMPORTED_TAG_NAMES)
+#        tagbaglist = self.call(request)
+#
+#        out = {}
+#        for tagbag in tagbaglist:
+#            key = tagbag[keytag]
+#
+#            for tagname in IMPORTED_TAG_NAMES:
+#                if not tagname in tagbag:
+#                    tagbag[tagname] = ''
+#            
+#            out[key] = tagbag
+#        
+#        return out
 
     # def getPlayinglistTags(self):
 
 if __name__ == '__main__':
-    from tviz.http_connection import HttpClient
+    IMPORTED_TAG_NAMES = [        
+            'Name',
+            'Orchestra',
+            'Genre',
+            'Singer',
+            'Key',
+            'Subgroup']    
 
-    c = HttpClient(user= 'mc', pwd= 'mc', port='50001',base='MCWS/v1/')
-    player = McPlayer(c)
-    p = Playinglist(player)
+    from jriver.player import JriverPlayer
+
+    player = JriverPlayer(user= 'mc', pwd= 'mc', port='50001')
+    p = Playinglist(player, IMPORTED_TAG_NAMES)
     p.update()
     
     print "len:",       p._len

@@ -8,7 +8,8 @@ from StringIO import StringIO
 from unidecode import unidecode
 
 from tviz.playinglist import Playinglist
-from tviz.features import TvizTandaFeatures, TvizSongFeatures
+from tviz.feature_factory import TvizTandaFeatures, TvizSongFeatures,\
+    UserFeatureFactory, Features
 
 
 
@@ -19,9 +20,18 @@ class TvizDB (object):
     '''
     
     def __init__ (self, player, featurefactory):
-        self._playinglist = Playinglist(player)
         self._featurefactory = featurefactory
+        self._player = player
+        
+        tagnames = self._tagnames (player, featurefactory)
+        
+        self._playinglist = Playinglist(player, tagnames)
         self._featuresdb = []
+
+    def _tagnames (self, player, featurefactory):
+        playertagnames = [tagname for tagname in player.tagnames]
+        
+        return featurefactory.tagnames + playertagnames
 
     def len(self):
         return self._playinglist.len()
@@ -35,7 +45,7 @@ class TvizDB (object):
     def update(self):
         out = self._playinglist.update()
         if out['pchanged']:
-            self._infer()
+            self.tags2features()
  
         self._updateTandas()
         
@@ -73,20 +83,23 @@ class TvizDB (object):
             if tanda.start < i <= tanda.end:
                 return tanda
 
-    def _infer(self):
-        plist = self._playinglist 
+    def tags2features(self):
+        tagslist = plist = self._playinglist.tagslist() 
         factory = self._featurefactory
-        
-        tagslist = plist.tagslist()
         
         # TODO: make this itteration overplaylist?
         for tags in tagslist:
-            self._featuresdb.append(factory.infer(tags)) # TODO: factory.infer
+            userfeatures = factory.tags2features(tags)
+            stdfeatures = self._player.tags2features(tags)
+            fdict=userfeatures
+            fdict.update(stdfeatures)
+            
+            features = Features(fdict)
+            self._featuresdb.append(features) 
         
     def _updateTandas(self):
         
         def isbreakfn (x):
-            #print x
             return  x.isbreak
       
         self._tandas = []
@@ -95,13 +108,6 @@ class TvizDB (object):
             tanda.start = i
             tanda.end = j
             tanda.songs = songfeatureslist
-         
-            # print 'START ***************************'
-            # print i, j 
-            # print len(songfeatureslist)
-            # print len(self._featuresdb)
-            # print 'END ***************************'
-            
             self._tandas.append(tanda)
         # quit()
 
@@ -207,10 +213,15 @@ if __name__ == '__main__':
 
     from tviz.http_connection import HttpClient
     from settings import MySongFeatureFactory
-    from tviz.playinglist import McPlayer
+    from jriver.player import JriverPlayer
+# from tviz.playinglist import McPlayer
    
-    c = HttpClient(user= 'mc', pwd= 'mc', port='50001',base='MCWS/v1/')
-    db = TvizDB(player = McPlayer(c), featurefactory= MySongFeatureFactory())
+    player = JriverPlayer(user= 'mc', pwd= 'mc', port='50001')
+
+    featurefactory = UserFeatureFactory('user_tagging')
+    db = TvizDB(player = player, featurefactory= featurefactory )
+
+
 
 
     db.update()

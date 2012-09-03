@@ -9,13 +9,21 @@ from tviz.http_connection import HttpClient
 from jriver.client import JriverRequest
 
 class JriverPlayer (Player):
-    tagnames = dict(key = 'Key')
+    tagnames = dict(key = 'Key', filename = 'Filename')
     keytag = tagnames['key']
 
     base = 'MCWS/v1/'
 
     def __init__(self, user, pwd, port):
         self.__client = HttpClient(user = user, pwd = pwd, port = port, base = self.base)
+           
+    def tags2features(self, tags):
+        out = {}
+        for featurename in self.tagnames:
+            tagname = self.tagnames[featurename]
+            out[featurename] = tags[tagname]
+        return out
+             
            
     def call(self, request):
         self.__client.call(request) 
