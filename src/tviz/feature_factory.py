@@ -4,14 +4,12 @@ Created on Aug 5, 2012
 '''
 from tutil.string import normal_wordbag
 
-from paths import SETTINGS, DEFAULT_IMAGES
 import re
 from tutil.meta import ClassPPrinter, ClassAttribProtector
+from paths import options_file, mapping_file
 
 TAG_FUNCTIONS = ['tag', 'tagwords']
 
-def settingsfile(name):
-    return SETTINGS + '/' + name + '.py'    
 
 '''
 Created on Aug 11, 2012
@@ -94,11 +92,12 @@ class UserOptions (ClassPPrinter):
         PWD = str,
         PORT = int,
         PLAYER = str,
-        IMAGE_FOLDER = str )
+        IMAGE_FOLDER = str,
+        PROFILE = str )
 
-    def __init__(self, settings):
+    def __init__(self, optionsname):
+        sfile= options_file(optionsname)
         
-        sfile = settingsfile(settings)
         localdict = {}
         execfile(sfile , globals(), localdict)
         
@@ -136,7 +135,7 @@ class UserFeatureFactory (ClassPPrinter):
     
     
     def __init__(self, settings):
-        self.__user_mapping_file = settingsfile(settings)
+        self.__user_mapping_file = mapping_file(settings)
         usermapping = open(self.__user_mapping_file, 'r').read()
         self.tagnames = self.__parse_tags(usermapping)
         
@@ -197,15 +196,15 @@ if __name__=='__main__':
     print 'Static User Features'
     print '-------------------------------'
 
-    o = UserOptions('user_options')
+    o = UserOptions('config')
     print o
 
     print '-------------------------------'
     print 'Dynamic User Features'
     print '-------------------------------'
     
-    f = UserFeatureFactory('user_tagging')
-    f.update(tags)
+    f = UserFeatureFactory('tagging')
+    f.tags2features(tags)
     print f
     
 

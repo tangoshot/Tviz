@@ -4,14 +4,14 @@ Created on Aug 5, 2012
 @author: tolga
 '''
 import os
-from settings import label_image_folder, orchestra_image_folder, singer_image_folder
+# from settings import label_image_folder, orchestra_image_folder, singer_image_folder
 from tutil.string import normal_wordbag
 
 class ImageDb():
 
-    _imagefolders = [
-        orchestra_image_folder, 
-        singer_image_folder]
+   # _imagefolders = [
+   #     orchestra_image_folder, 
+   #     singer_image_folder]
         # , label_image_folder]
     
     _imageexts = frozenset(['gif', 'jpg', 'bmp', 'gif', 'jpg', 'jpeg', 'png', 'webp'])

@@ -14,18 +14,25 @@ from tviz.image_matching import ImageDb
 from jriver.player import JriverPlayer 
 
 
+
 class TvizDriver:
+    TVIZ_MODE_OFF = 0
+    TVIZ_MODE_TANDA = 1
+    TVIZ_MODE_MESSAGE = 2
+
+    playinglist = None
+
     __client = None
     _db = None
     _player = None
-    playinglist = None
     _renderer = TvizRenderer()
-        
     
-    def __init__(self, options_file, mapping_file):
-        featurefactory = self._featurefactory = UserFeatureFactory(mapping_file)
+    def __init__(self, options_file='config', widget=None):
+        self.mode = self.TVIZ_MODE_OFF
+        self.message = ''
         
         options = self._options = UserOptions(options_file)
+        featurefactory = self._featurefactory = UserFeatureFactory(options.PROFILE)
         
         print "Feature Factory"
         print featurefactory
@@ -64,9 +71,13 @@ class TvizDriver:
         
         self._renderer.renderTanda(tanda, currentsong, imagedb)
 
+    def renderMessage(self, message):
+        self._renderer.renderMessage(message)
+
+
     def danceableTanda(self):
         tanda = self._db.currentTanda()
-        
+        print tanda
         
         if not tanda.isbreak:
             tanda.isnow = True
@@ -81,39 +92,57 @@ class TvizDriver:
                 
         return None # No danceable tandas left.
 
-def runtviz():
-    
-    tviz = TvizDriver('user_options', 'user_tagging')
-    
-    while(True):
-        sleep(3)    
-        
-        # print tviz.index()
-        
-        tviz.update()
+    def run(self):
+         
+        while(self.mode != self.TVIZ_MODE_OFF):
 
+            print "xxx RUN MODE: " + str(self.mode)
+            print "xxx MESSAGE: " + self.message
+
+            sleep(3)    
+            
+            # print tviz.index()
+            
+            if self.mode == self.TVIZ_MODE_TANDA:
+                self.update()
       
-        tanda = tviz.danceableTanda()
+                tanda = self.danceableTanda()
+                
+                if not tanda:
+                    continue
+                
+                print 
+                print '************************************'
+                if tanda.isnow:
+                    print "Current Tanda"
+                else:
+                    print "Next Tanda"
+                print '************************************'
+                
+                print tanda
+                print 
+            
+                self.renderTanda(tanda)
+                
+            if self.mode == self.TVIZ_MODE_MESSAGE:
+                print "rendering : " + self.message 
+                self.renderMessage(self.message)
+                
+        
+    def setMode(self, mode):
+        assert mode in [
+            self.TVIZ_MODE_OFF,
+            self.TVIZ_MODE_MESSAGE,
+            self.TVIZ_MODE_TANDA]
+        
+        self.mode = mode
 
-        
-        
-        if not tanda:
-            continue
-        
-        print 
-        print '************************************'
-        if tanda.isnow:
-            print "Current Tanda"
-        else:
-            print "Next Tanda"
-        print '************************************'
-        
-        print tanda
-        print 
-        
-        tviz.renderTanda(tanda)
+    def setMessage(self,message):
+        print "xxx Setting message: " + message
+        self.message = message
 
 
 if __name__ == '__main__':
-    
-        runtviz()
+        tviz = TvizDriver('config')
+        tviz.run(tviz.TVIZ_MODE_TANDA)
+        

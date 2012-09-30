@@ -83,6 +83,12 @@ class TvizRenderer:
             songs.append(Song(name=song.name, highlighting = highlighting))
         return songs
         
+    def renderMessage(self, message):
+        print 'xxx render message:' + message
+        context = dict(message = message, XML = XML)
+        
+        self.render('message.html', context)
+        
 
     def renderTanda(self, tanda, currentsong,imagedb):
 
@@ -135,6 +141,7 @@ class TvizRenderer:
                             
     
     def render(self, filename, context):
+        print "xxx TvizREnderer: " + filename
 
         try:
             templatetxt = open(template_file(filename), 'r').read()
