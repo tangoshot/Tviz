@@ -16,7 +16,7 @@ from tviz.feature_factory import TvizTandaFeatures, TvizSongFeatures,\
 
 class TvizDB (object):
     '''
-    Store features inferred from tags using defined rules for each song on the playinglist
+    Store index2features inferred from tags using defined rules for each song on the playinglist
     '''
     
     def __init__ (self, player, featurefactory):
@@ -26,7 +26,9 @@ class TvizDB (object):
         tagnames = self._tagnames (player, featurefactory)
         
         self._playinglist = Playinglist(player, tagnames)
-        self._featuresdb = []
+        self._featuresdb = {}
+        
+        
 
     def _tagnames (self, player, featurefactory):
         playertagnames = [tagname for tagname in player.tagnames]
@@ -36,22 +38,46 @@ class TvizDB (object):
     def len(self):
         return self._playinglist.len()
     
-    def features(self, index):
+    def index2key(self, index):
+        return self._playinglist.index2key(index)
+    
+    def playingkeys(self):
+        return self._playinglist.getKeys()
+    
+        
+    def index2features(self, index):
         assert index >= 0 
         assert index < self.len()
         
-        return self._featuresdb [index]
+        key = self.index2key(index)
+        
+        # print "xxx INDEX: ", index, "KEY: ", key
+        
+        return self._featuresdb [key]
 
     def update(self):
         out = self._playinglist.update()
+        
+        # print "xxx **** PLAYINGLIST ****", out
+        # print 'xxx LEN: \n', self._playinglist._len
+        # print 'xxx INDEX: \n', self._playinglist._index
+        # print 'xxx KEYS: \n', self._playinglist._keys
+        # print 'xxx TAGS: \n', self._playinglist._tagdb
+        
+        
+        # print "xxx **** PLAYINGLIST Update Status", out
+        
         if out['pchanged']:
+            # print 'xxx starting tags2features'
             self.tags2features()
  
         self._updateTandas()
         
+        return out
+        
         
     def getSong(self,index):
-        return self._featuresdb[index]  #TODO: little hacky?
+        return self.index2features(index)
         
     def getTanda(self,index):
         
@@ -63,6 +89,7 @@ class TvizDB (object):
     
     def currentSong(self):
         index = self._playinglist.index()
+        # print "xxx CURRENT INDEX: ", index
         return self.getSong(index)
 
     def currentTanda(self):
@@ -95,15 +122,26 @@ class TvizDB (object):
             fdict.update(stdfeatures)
             
             features = Features(fdict)
-            self._featuresdb.append(features) 
+            # print 'xxx Features', features.key, repr(features)
+            
+            self._featuresdb.update({features.key:features}) 
+        
+        # print '**** tags2features ****'    
+        # print 'xxx  taglist:   ', tagslist
+        # print 'xxx  featuresdb:   ', self._featuresdb 
         
     def _updateTandas(self):
         
-        def isbreakfn (x):
-            return  x.isbreak
+        def isbreakfn (key):
+            return  self._featuresdb[key].isbreak
+      
       
         self._tandas = []
-        for i, j,songfeatureslist in tandait(self._featuresdb, isbreakfn):
+        for i, j,keys in tandait(self.playingkeys(), isbreakfn):
+            songfeatureslist = [self._featuresdb[key] for key in keys]
+            
+            # print 'yyy:', songfeatureslist
+            
             tanda = TvizTanda(songfeatureslist)
             tanda.start = i
             tanda.end = j

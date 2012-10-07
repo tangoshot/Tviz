@@ -19,7 +19,7 @@ Created on Aug 11, 2012
 '''
 
 class Features (ClassPPrinter):
-    features = {
+    index2features = {
         'name', 
         'genre',
         'isbreak',
@@ -31,10 +31,10 @@ class Features (ClassPPrinter):
     
     
     def __init__(self, fdict = {}):
-        for feature in self.features:
+        for feature in self.index2features:
             setattr(self, feature, fdict[feature])
    
-    
+ 
     
 
 
@@ -63,7 +63,7 @@ class TvizSongFeatures(TvizSong):
     ## MISSING Instrumental marker
     
     '''
-    inferred features of a song
+    inferred index2features of a song
     '''
 
 
@@ -85,9 +85,9 @@ class TvizTandaFeatures(TvizSongFeatures):
         return '\n'.join(wordlist)
 
 class UserOptions (ClassPPrinter):
-    # TODO: add type checking to static features
+    # TODO: add type checking to static index2features
 
-    features = dict(
+    index2features = dict(
         USER = str,
         PWD = str,
         PORT = int,
@@ -101,7 +101,7 @@ class UserOptions (ClassPPrinter):
         localdict = {}
         execfile(sfile , globals(), localdict)
         
-        for feature in self.features:
+        for feature in self.index2features:
             try:
                 setattr(self, feature, localdict[feature])
             except:
@@ -122,10 +122,10 @@ class UserOptions (ClassPPrinter):
     
 class UserFeatureFactory (ClassPPrinter):
 
-    # TODO: add type checking and coverage checking to dynamic features
+    # TODO: add type checking and coverage checking to dynamic index2features
     tagnames = []
 
-    features = {
+    index2features = {
         'NAME', 
         'GENRE',
         'ISBREAK',
@@ -160,7 +160,7 @@ class UserFeatureFactory (ClassPPrinter):
 
         out = {}
 
-        for feature in self.features:
+        for feature in self.index2features:
             try:
                 out[feature.lower()] = localdict[feature]
             except:

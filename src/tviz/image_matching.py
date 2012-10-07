@@ -53,8 +53,7 @@ class ImageDb():
             try:
                 outstr = self._db[input]
             except:
-                print "Cannot find %s in image database\n" % input
-            
+                logging.error( "Cannot find %s in image database\n", input) 
             return outstr
         
         # TODO: partial find

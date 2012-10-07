@@ -8,4 +8,4 @@ Internal options of tviz program
 
 '''
 
-tango_banner = True
+tangoshot_banner_on = False

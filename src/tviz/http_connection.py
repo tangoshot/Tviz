@@ -7,7 +7,10 @@ Created on Jul 4, 2012
 #TODO: move to urllib2 for authorization
 # http://docs.python.org/library/urllib2.html
 
+import logging
+import urllib2
 import urllib
+
 
 class HttpClient (object):
     '''Player web service.
@@ -48,18 +51,22 @@ class HttpClient (object):
         command = self.url() + request.query()
 
         self.lastcall = command
+        
         # Open Socket
         try:
             socket = urllib.urlopen(command)
         except:
-            raise Exception("Failed response for: " + command)
+            logging.error("Failed response for: " + command)
+            raise
+
         try:
             request.receive(socket)
         except:
-            socket.close()
-            raise Exception("Cannot connect to socket")
-        finally:
-            socket.close()
+            logging.error("Cannot connect to socket")
+            print "Cannot connect to socket"
+            raise
+        
+        socket.close()
 
 class HttpRequest (object):
     _action= None
@@ -88,6 +95,8 @@ class HttpRequest (object):
         self._parser= parser
     
     def parse(self, txt):
+  
+        
         return self._parser.parse(txt)
 
     def setReader(self, reader):
@@ -128,9 +137,34 @@ class HttpRequest (object):
         server.call(self.lastcall) 
     
     def receive(self, socket):
-        packet= self.read(socket)
-        self.rawresponse= packet
-        self.response = self.parse(self.rawresponse)
+        logging.debug('STARTING socket read')
+    
+        try:    
+            packet= self.read(socket)
+        except:
+            logging.error("Cannot read socket: ", socket.info())
+            raise
+
+        socket.close()
+        logging.debug('packet: ' + repr(packet))
+        
+        try:
+            packet_uni = packet.decode('utf-8')
+        except:
+            loggging.debug('packet_uni: ' + repr(packet_uni))
+            raise
+    
+        # TODO: this should be an input for the service call
+        # or we should try to extract it from the encoding entry of xml
+        
+        self.rawresponse = packet_uni
+        
+        try:
+            self.response = self.parse(self.rawresponse)
+        except:
+            logging.error("Cannot parse packet_uni: " + repr(packet_uni))
+            
+        return self.response
         
         
 class DefaultParser:
@@ -143,7 +177,8 @@ class DefaultReader:
         try:
             out = socket.read()
         except:
-            raise Exception( "Cannot read from socket:")
+            logging.error("Cannot read from socket:")
+            raise
         
         return out
 

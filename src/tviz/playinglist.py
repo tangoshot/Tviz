@@ -1,4 +1,5 @@
 # from tviz.mcws.client import defaultjriver
+import logging
 
 from jriver.client import JriverRequest
 import time
@@ -18,12 +19,11 @@ class Playlist(object):
     database that stores a playlist
     '''
 
-    _tagdb={}
-    _keys=[]
-    _index=None
-    _len=None
-
     def __init__(self, importedtags):
+        _tagdb={}
+        _keys=[]
+        _index=None
+        _len=None
         self.importedtags = importedtags
 
     def current(self):
@@ -54,7 +54,7 @@ class Playlist(object):
         return self._tagdb[key]
 
     def _index2tags(self, index):
-        key= self._index2key(index)
+        key= self.natural_index2key(index)
         tags = self._tagdb [key]
         
         out = {}
@@ -63,10 +63,18 @@ class Playlist(object):
 
         return out
         
-    def _index2key(self, index):
+    def index2key(self, index):
+        key = self._keys [index]
+        return key
+
+    def natural_index2key(self, index):
         intindex= index - 1
         key = self._keys [intindex]
         return key
+    
+    def getKeys(self):
+        return self._keys
+        
 
 class Playinglist (Playlist):
     ''' 
@@ -77,6 +85,12 @@ class Playinglist (Playlist):
     
 
     def __init__(self, player, usertagnames):
+        self._len = -1
+        self._keys = []
+        self._index = -1
+        self._tagdb={}
+
+        
         self._player = player
         playertags = [player.tagnames[name] for name in player.tagnames]
         self.importedtags = usertagnames + playertags
@@ -89,7 +103,10 @@ class Playinglist (Playlist):
         t2 = time.time()
         dt = t2 - t1
         
-        print "Reading Tags (%.2f seconds)" % dt
+        
+        infostr = "Reading Tags (%.2f seconds)" % dt
+        print infostr
+        logging.info(infostr)
         return out
     
     def readSignature(self):
@@ -97,18 +114,23 @@ class Playinglist (Playlist):
         out = self._player.getPlayinglistSignature()
         t2 = time.time()
         dt = t2 - t1
-        print "Reading Playlist (%.2f seconds)" % dt
+        infostr = "Reading Playlist (%.2f seconds)" % dt
+        print infostr
+        logging.info(infostr)
+        
         return out
         
     def update(self):
         
         '''
         update len/index/keys and determine if tag database requires update.
+        return dict:
+            pchanged: True/False # playlist signature is changed
 
         '''
         # slow call
         sig= self.readSignature()
-
+        # print "xxx playlist signature: ", repr(sig)
         pchanged = False # playing list is changed
         tchanged = False # tags are changed
 
@@ -137,6 +159,9 @@ class Playinglist (Playlist):
     def _playinglist_changed(self, sig):
         if sig.len != self._len:
             return True
+        if sig.index!= self._index:
+            return True
+        
         if sig.keys != self._keys:
             return True
         return False            
@@ -236,11 +261,10 @@ if __name__ == '__main__':
     p = Playinglist(player, IMPORTED_TAG_NAMES)
     p.update()
     
-    print "len:",       p._len
-    print "keys:",      p._keys
-    print "Current: ", p.current()
-    print "Current Tags: ", p.tags(p.current())
-    
+    logging.debug("len:" + p._len)
+    logging.debug("keys:" + p._keys)
+    logging.debug("Current: " + p.current())
+    logging.debug("Current Tags: " + p.tags(p.current()))
     
     # from cPickle import dump, load
     # import pickle 

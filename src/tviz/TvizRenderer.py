@@ -4,7 +4,7 @@ from paths import template_file, html_file
 from shutil import copy
 import codecs 
 from gluon import P
-
+from tviz.options import tangoshot_banner_on
 
 def singerstext(SINGERS):
     if len(SINGERS) == 0:
@@ -36,13 +36,21 @@ class Song:
         
 class PlayingSong:
 
-    def __init__(self, imagedb, name, orchestra, SINGERS): 
+    def __init__(self, imagedb, name, orchestra, isinstrumental, SINGERS): 
         
         orchestra = orchestra if orchestra else ''
+        
+        #TODO: Hack: filtering '' singers should be done earlier. 
+        # print SINGERS
+        SINGERS = [singer for singer in SINGERS if singer != '']
+        # print SINGERS
         singerstxt =  singerstext(SINGERS)
         
-        self.artists = ' featuring '.join([ orchestra.encode('ascii', 'xmlcharrefreplace'),
-                             singerstxt.encode('ascii', 'xmlcharrefreplace') ])
+        if isinstrumental or singerstxt == '':
+            self.artists = ''
+        else:  
+            self.artists = ' featuring '.join([ orchestra.encode('ascii', 'xmlcharrefreplace'),
+                                 singerstxt.encode('ascii', 'xmlcharrefreplace') ])
 
         imagequeries= []       
         if orchestra:
@@ -60,12 +68,16 @@ class PlayingSong:
 class Banner():
     def html (self):
         
-        out = DIV(                  
-            BR(),
-            BR(),
-            P( 'TangoShot.com',  
-               _style="color:rgb(40,40,40);font-size:6em;font-weight:bold;"))                  
+        if tangoshot_banner_on:
+            out = DIV(                  
+                BR(),
+                BR(),
+                P( 'TangoShot.com',  
+                   _style="color:rgb(40,40,40);font-size:6em;font-weight:bold;"))                  
         
+        else:
+            out = P('')
+
         return out
 
 
@@ -84,13 +96,13 @@ class TvizRenderer:
         return songs
         
     def renderMessage(self, message):
-        print 'xxx render message:' + message
+        # print 'xxx render message:' + message
         context = dict(message = message, XML = XML)
         
         self.render('message.html', context)
         
 
-    def renderTanda(self, tanda, currentsong,imagedb):
+    def renderTanda(self, tanda, currentsong, imagedb):
 
         songs = self.getSongs(tanda, currentsong.key)
         
@@ -102,7 +114,11 @@ class TvizRenderer:
             tandaorchestra = None
             currentorchestra = currentsong.orchestra
        
-        playingsong = PlayingSong(imagedb, currentsong.name, currentorchestra, currentsong.singers)
+        playingsong = PlayingSong(imagedb, 
+                                  currentsong.name, 
+                                  currentorchestra,
+                                  currentsong.isinstrumental,
+                                  currentsong.singers)
                     
         tandaorchestraimage = None
         
@@ -129,10 +145,9 @@ class TvizRenderer:
     def title(self, isnow, orchestra, GENRE):
         
         isnow = '' if isnow else 'Next: '
-                
-        orchestra = ' {o} '.format(o = orchestra) if orchestra else '' 
+        orchestra = u' {o} '.format(o = orchestra) if orchestra else '' 
         
-        title = '{isnow}{orchestra}{GENRE} Tanda'.format(
+        title = u'{isnow}{orchestra}{GENRE} Tanda'.format(
              isnow=isnow,
              orchestra = orchestra,
              GENRE = GENRE )
@@ -141,7 +156,7 @@ class TvizRenderer:
                             
     
     def render(self, filename, context):
-        print "xxx TvizREnderer: " + filename
+        # print "xxx TvizREnderer: " + filename
 
         try:
             templatetxt = open(template_file(filename), 'r').read()
@@ -152,7 +167,7 @@ class TvizRenderer:
             outputhtml = template.render(content= templatetxt, context = context)
             
         except:
-            print "HtmlRenderer: Error rendering: " + filename
+            logging.error("HtmlRenderer: Error rendering: " + filename)
             raise 
 
         outfile = html_file('tanda.html')
@@ -162,7 +177,7 @@ class TvizRenderer:
             out.write(outputhtml)
             out.close()
         except:
-            print "HtmlRenderer: Error writing to file: ", outfile
+            logging.error("HtmlRenderer: Error writing to file: " + outfile)
             
 
     

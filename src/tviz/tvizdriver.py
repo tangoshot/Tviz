@@ -3,7 +3,11 @@ Created on Aug 11, 2012
 
 @author: tolga
 '''
+
+import logging
+
 from time import sleep
+
 
 from tviz.feature_factory import UserFeatureFactory, UserOptions
 from tviz.http_connection import HttpClient
@@ -34,11 +38,9 @@ class TvizDriver:
         options = self._options = UserOptions(options_file)
         featurefactory = self._featurefactory = UserFeatureFactory(options.PROFILE)
         
-        print "Feature Factory"
-        print featurefactory
+        logging.info("Feature Factory: \n" + str(featurefactory))
         
-        print "Options:"
-        print options
+        logging.info("Options:\n" + str(options))
         
         self._imagedb= ImageDb(options)
 
@@ -47,8 +49,8 @@ class TvizDriver:
                                   pwd = options.PWD, 
                                   port = options.PORT)
         else:
-            print 'unsupport player "{player}" defined in user options file'.format(player=options.PLAYER)
-            print 'Valid players are: jriver'
+            logging.error('unsupport player "{player}" defined in user options file'.format(player=options.PLAYER))
+            logging.error('Valid players are: jriver')
             quit()
 
         self._db = TvizDB(player = player, 
@@ -61,7 +63,7 @@ class TvizDriver:
 
 
     def update(self):
-        self._db.update()
+        return self._db.update()
         
     def renderTanda(self, tanda):
         db = self._db
@@ -69,6 +71,9 @@ class TvizDriver:
 
         currentsong = self._db.currentSong()
         
+        # print "CURRENT Tanda: ", tanda
+        # print "CURRENT Song: ", currentsong
+                
         self._renderer.renderTanda(tanda, currentsong, imagedb)
 
     def renderMessage(self, message):
@@ -77,7 +82,7 @@ class TvizDriver:
 
     def danceableTanda(self):
         tanda = self._db.currentTanda()
-        print tanda
+        
         
         if not tanda.isbreak:
             tanda.isnow = True
@@ -93,24 +98,43 @@ class TvizDriver:
         return None # No danceable tandas left.
 
     def run(self):
-         
-        while(self.mode != self.TVIZ_MODE_OFF):
-
-            print "xxx RUN MODE: " + str(self.mode)
-            print "xxx MESSAGE: " + self.message
-
+        self.mode = self.TVIZ_MODE_TANDA
+        while (True):
+            self.run_one()
             sleep(3)    
+
+
+    def run_one(self):
+        # print "xxx RUN MODE: " + str(self.mode)
+        # print "xxx MESSAGE: " + self.message
+
+        if self.mode == self.TVIZ_MODE_OFF:
+           # print "xxx Tviz off. returning control"
+           return
+        
+        if self.mode == self.TVIZ_MODE_MESSAGE:
+            self.run_one_show_message()
+            return 
+        
+        if self.mode == self.TVIZ_MODE_TANDA:
+            self.run_one_show_tanda()
+
+    def run_one_show_message(self):
+            logging.debug("rendering message: " + self.message) 
+            self.renderMessage(self.message)
             
-            # print tviz.index()
+    def run_one_show_tanda(self):
+        if self.mode == self.TVIZ_MODE_TANDA:
             
-            if self.mode == self.TVIZ_MODE_TANDA:
-                self.update()
-      
-                tanda = self.danceableTanda()
-                
-                if not tanda:
-                    continue
-                
+            update_result = self.update()
+            # print 'xxx UPDATE results, ',update_result  
+        
+            tanda = self.danceableTanda()
+            
+            if not tanda:
+                logging.info('no tanda available')
+            
+            if update_result['pchanged']:
                 print 
                 print '************************************'
                 if tanda.isnow:
@@ -121,12 +145,9 @@ class TvizDriver:
                 
                 print tanda
                 print 
+        
+            self.renderTanda(tanda)
             
-                self.renderTanda(tanda)
-                
-            if self.mode == self.TVIZ_MODE_MESSAGE:
-                print "rendering : " + self.message 
-                self.renderMessage(self.message)
                 
         
     def setMode(self, mode):
@@ -138,11 +159,11 @@ class TvizDriver:
         self.mode = mode
 
     def setMessage(self,message):
-        print "xxx Setting message: " + message
+        # print "xxx Setting message: " + message
         self.message = message
 
 
 if __name__ == '__main__':
         tviz = TvizDriver('config')
-        tviz.run(tviz.TVIZ_MODE_TANDA)
+        tviz.run()
         

@@ -1,7 +1,15 @@
+
 import sys
-from os.path import join, dirname 
+import logging
+
+import os
 from os import makedirs
+from os.path import join, dirname 
+
 from genericpath import exists
+from shutil import copyfileobj, copyfile
+
+LOGGING_LEVEL = logging.DEBUG
 
 
 if getattr(sys, 'frozen', None):
@@ -16,7 +24,7 @@ RESOURCES = join(_ROOT, 'resources')
 USER = join(_ROOT, 'user')
 DEFAULT_IMAGES = join(RESOURCES, 'images')
 TEMPLATES = join(RESOURCES, 'templates')
-        
+LOGFILE = join(_ROOT, 'debug.log')
 
 def template_file(name):
     return join(TEMPLATES, name)
@@ -34,9 +42,16 @@ def options_file(name):
     
 def mapping_file(name):    
     return join(USER, name + '.py')
-        
-if __name__ == '__main__':
+
+if os.path.exists(LOGFILE):
+    copyfile(LOGFILE, LOGFILE+'.bkp')
     
+logging.basicConfig(filemode='w', level=LOGGING_LEVEL, format = '%(levelname)s %(asctime)s : %(name)s : %(message)s', filename=LOGFILE)
+
+logging.info('started logging')
+
+     
+if __name__ == '__main__':
     
     print '_ROOT: ', _ROOT
     print 'RESOURCES: ', RESOURCES
