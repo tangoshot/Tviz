@@ -1,0 +1,29 @@
+INFO 2012-10-07 21:08:40,288 : root : started logging
+DEBUG 2012-10-07 21:08:41,288 : web2py.dal : no pymysql driver
+DEBUG 2012-10-07 21:08:41,290 : web2py.dal : no psycopg2 driver
+DEBUG 2012-10-07 21:08:41,295 : web2py.dal : no cx_Oracle driver
+DEBUG 2012-10-07 21:08:41,298 : web2py.dal : no MSSQL/DB2 driver
+DEBUG 2012-10-07 21:08:41,302 : web2py.dal : no kinterbasdb driver
+DEBUG 2012-10-07 21:08:41,305 : web2py.dal : no Firebird driver
+DEBUG 2012-10-07 21:08:41,309 : web2py.dal : no informixdb driver
+DEBUG 2012-10-07 21:08:41,312 : web2py.dal : no sapdb driver
+DEBUG 2012-10-07 21:08:41,315 : web2py.dal : no cubriddb driver
+DEBUG 2012-10-07 21:08:41,319 : web2py.dal : no zxJDBC driver
+DEBUG 2012-10-07 21:08:41,322 : web2py.dal : no Ingres driver
+DEBUG 2012-10-07 21:08:41,325 : web2py.dal : no couchdb driver
+DEBUG 2012-10-07 21:08:41,328 : web2py.dal : no mongoDB driver
+INFO 2012-10-07 21:08:41,375 : root : Feature Factory: 
+index2features : set(['NAME', 'ORCHESTRA', 'GENRE', 'SINGERS', 'ISINSTRUMENTAL', 'ISBREAK'])
+tagnames : ['Genre', 'Singer', 'Orchestra', 'Name', 'Subgroup']
+
+INFO 2012-10-07 21:08:41,377 : root : Options:
+IMAGE_FOLDER : C:/Media/Audio/Music/Released (k)/Tango (k)/Tango images (k)/
+PLAYER : jriver
+PORT : 50001
+PROFILE : tolga_jriver
+PWD : mc
+USER : mc
+index2features : {'PROFILE': <type 'str'>, 'PLAYER': <type 'str'>, 'PWD': <type 'str'>, 'USER': <type 'str'>, 'PORT': <type 'int'>, 'IMAGE_FOLDER': <type 'str'>}
+
+DEBUG 2012-10-07 21:10:30,926 : root : STARTING socket read
+DEBUG 2012-10-07 21:10:30,927 : root : packet: '2;7;1;13187317;2848526;2848070;31819996;5422757;25966064;13187317'

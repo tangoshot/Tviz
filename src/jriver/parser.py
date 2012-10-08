@@ -5,18 +5,34 @@ Created on Jul 4, 2012
 
 '''
 
+from xml.etree import ElementTree as XML
 
-from xml.etree import ElementTree
-XML=ElementTree
 
-class McwsParser(object):
+class McwsReader(socket):
+    def get(self, socket):
+        data = read(socket)
+        output = self.parse(data)
+        
+        
+
+    def read(self, readable):
+        try:
+            return self.parse(ET.parse(stream))
+        except:
+            pass        
+        
+        try:
+             data = stream.read()
+             stream.close()
+        except:
+            logging.error('cannot read stream: ' + stream)
     
     def parse(self, packet):
         return packet
 
 
-class McwsSignatureParser(McwsParser):
-
+class McwsSignatureParser(McwsReader):
+    
     def parse(self, packet):
         siglist = packet.split(';')
         out = {}
@@ -26,7 +42,7 @@ class McwsSignatureParser(McwsParser):
         
         return out
     
-class McwsXmlParser(object):
+class McwsXmlReader(McwsReader):
     def parse(self, packet):
         try:
             xml = ElementTree.fromstring(packet)
@@ -39,14 +55,14 @@ class McwsXmlParser(object):
         return self.parse_xml(xml)
 
     def parse_xml(self, tree):
-        return XML.dump(tree)
+        return ET.dump(tree)
 
-class McwsMplParser(McwsXmlParser):
+class McwsMplReader(McwsXmlReader):
     def parse_xml(self, tree):
         items=[]
 
         if tree.tag != 'MPL':
-            logging.error('MPL excepted in XML but got: \n\n' + repr(XML.dump(tree)))
+            logging.error('MPL excepted in XML but got: \n\n' + repr(ET.dump(tree)))
             raise 
             
 
@@ -61,7 +77,7 @@ class McwsMplParser(McwsXmlParser):
         return items
 
     
-class McwsResponseParser (McwsXmlParser):
+class McwsResponseReader (McwsXmlReader):
 
     def parse_xml(self, response):
         out= {}

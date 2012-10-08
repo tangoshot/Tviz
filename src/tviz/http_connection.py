@@ -10,10 +10,12 @@ Created on Jul 4, 2012
 import logging
 import urllib2
 import urllib
+from xml.etree.ElementTree import ElementTree
 
 
 class HttpClient (object):
-    '''Player web service.
+    '''
+    Player web service.
     Provides interface to access to different player web services
     '''
 
@@ -47,8 +49,14 @@ class HttpClient (object):
         )
         return addr
 
-    def call(self, request):        
-        command = self.url() + request.query()
+    def call(self, request):
+        '''
+        make a service call. request is a HttpRequest object. 
+        the actual reading and parsing of the return is delegated to 
+        HttpRequest.getResponse function.        
+        '''
+            
+        command = self.url() + request.encodeQuery()
 
         self.lastcall = command
         
@@ -60,52 +68,52 @@ class HttpClient (object):
             raise
 
         try:
-            request.receive(socket)
+            output = request.getResponse(socket)
         except:
             logging.error("Cannot connect to socket")
             print "Cannot connect to socket"
             raise
-        
         socket.close()
+        
+        return output
 
 class HttpRequest (object):
+
     _action= None
     _args= None
     lastcall= None
     response= None
     rawresponse= None
-    _parser = None
-    _reader = None
-    
-    def __init__(self):
-        self._parser= DefaultParser()
-        self._reader= DefaultReader()
 
-    def setAction(self, action, args={}):
+    def __init__(self, action, args={}):
         self._action = action
         self._args = args
-        self._clean_response()
+
+
+    def read(self, stream):
+        '''
+        reads data coming from the stream (e.g. socket),
+        into an internal datastructure (e.g. ElementTree, txt, ...)
+        Can be overriden my more specific versions for a more specific type 
+        of http request.
+        '''
+        try:
+            data = ElementTree.parse(stream)
+        except:
+            data = stream.read(stream)
+        except:
+            raise
     
-    def _clean_response(self):
-        self.lastcall = None
-        self.rawresponse = None
-        self.response = None
+    def parse(self, data):
+        '''
+        parses previously data in an internal structure (e.g. ElementTree),
+        into a simplified data structure, e.g. dictionary
+        '''
+        try:
+            return data.dump
+        except:
+            return data
 
-    def setParser(self, parser):
-        self._parser= parser
-    
-    def parse(self, txt):
-  
-        
-        return self._parser.parse(txt)
-
-    def setReader(self, reader):
-        self._reader= reader
-
-    def read(self, socket):
-        reader = self._reader
-        return reader.read(socket)
-   
 
     def __str__(self):
         txt= '''
@@ -114,7 +122,7 @@ class HttpRequest (object):
         *******************************
         {response}
         -------------------------------
-        {query}
+        {encodeQuery}
         
         {rawresponse}
         *******************************
@@ -122,78 +130,45 @@ class HttpRequest (object):
             action = str(self._action),
             args = str(self._args),
             response = str(self.response),
-            query = str(self.query()), 
+            query = str(self.encodeQuery()), 
             rawresponse = str(self.rawresponse))
         
         return txt
-    
-    def query(self):
-        params = urllib.urlencode(self._args) if self._args else None
-        
-        return  self._action + ('?'+ params if params else '') 
-       
-    def call(self, server):
-        self.lastcall= server.addr + self.query()
+      
+    def sendQuery(self, server):
+        self.lastcall= server.addr + self.encodeQuery()
         server.call(self.lastcall) 
     
-    def receive(self, socket):
-        logging.debug('STARTING socket read')
-    
+    def getResponse(self, socket):
+        logging.debug('STARTING: getting http response')
         try:    
-            packet= self.read(socket)
+            self.data= self.read(socket)
         except:
-            logging.error("Cannot read socket: ", socket.info())
+            logging.error("Cannot read socket: ", socket.error())
+            socket.close()
             raise
 
         socket.close()
-        logging.debug('packet: ' + repr(packet))
         
         try:
-            packet_uni = packet.decode('utf-8')
+            self.response = self.parse(self.data)
         except:
-            loggging.debug('packet_uni: ' + repr(packet_uni))
-            raise
-    
-        # TODO: this should be an input for the service call
-        # or we should try to extract it from the encoding entry of xml
-        
-        self.rawresponse = packet_uni
-        
-        try:
-            self.response = self.parse(self.rawresponse)
-        except:
-            logging.error("Cannot parse packet_uni: " + repr(packet_uni))
+            logging.error("Cannot parse data: " + repr(packet_uni))
             
         return self.response
         
+    def encodeQuery(self):
+        params = urllib.urlencode(self._args) if self._args else None
         
-class DefaultParser:
-    def parse(self, txt):
-        return txt
-
-class DefaultReader:
-    
-    def read(self, socket):
-        try:
-            out = socket.read()
-        except:
-            logging.error("Cannot read from socket:")
-            raise
-        
-        return out
+        return  self._action + ('?'+ params if params else '') 
 
 
 if __name__ == '__main__':
     c= HttpClient(user= 'mc', pwd= 'mc', port='50001',base='MCWS/v1/')
-    r = HttpRequest()
-    r.setAction('Alive')
-    print r
-    c.call(r)
-    # print r
-    print r.response
+    r = HttpRequest('Alive')
+    print c.call(r)
     
-    r.setAction('Info')
-    c.call(r)
-    print r.response
+    r = HttpRequest('Info')
+    print c.call(r)
 
     

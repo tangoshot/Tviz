@@ -1,0 +1,58 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta http-equiv="Content-Type" content="text/html; charset="utf-8" />
+</head>
+
+<body style="background-color: #000000">
+<div align="center">
+
+	<div align="center">
+	  <h1 class="normal"> {{=XML(title)}}</h1>
+	</div>
+
+<br>
+	<table border="0">
+		<tr>
+			 {{if tandaorchestraimage :}}
+			 <td><img height="200" src="{{=tandaorchestraimage }}"></td>
+			 {{pass}}
+		 
+		 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			
+			<td>
+				<table>
+        {{for song in songs:}}
+				  <tr>
+						<td class="{{=song.highlighting}}">o</td>
+						<td class="{{=song.highlighting}}">{{=XML(song.name)}}</td>
+					</tr>
+        {{pass}}
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	<hr>
+  
+  {{if isnow:}}
+	
+	<br> 
+	 <p class="normal">{{=XML(subtitle)}}</p> 
+	<br>
+		
+	
+	<table>
+	  <tr>
+	  {{for image in playingsong_images:}}
+	    <td><img height="200" src="{{=image}}"></td>
+	  {{pass}}
+	  <tr>
+	</table>
+  
+  {{elif banner:}}
+    {{=banner}}
+  {{else:}}
+  {{pass}}
+	
+</div>
+</body>
