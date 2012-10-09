@@ -7,6 +7,7 @@ from tutil.string import normal_wordbag
 import re
 from tutil.meta import ClassPPrinter, ClassAttribProtector
 from paths import options_file, mapping_file
+import logging
 
 TAG_FUNCTIONS = ['tag', 'tagwords']
 
@@ -104,10 +105,15 @@ class UserOptions (ClassPPrinter):
         for feature in self.index2features:
             try:
                 setattr(self, feature, localdict[feature])
-            except:
-                raise Exception('Missing feature "{feature}" in user file: {file}'.format(
-                    feature = feature,
-                    file = sfile))
+            except Exception as e:
+                
+                logging.error('Missing feature "{feature}" in user file: {file}'.format(
+                        feature = feature,
+                        file = sfile))
+                
+                raise e
+            
+            
         
         self.update(localdict)
 
@@ -163,10 +169,12 @@ class UserFeatureFactory (ClassPPrinter):
         for feature in self.index2features:
             try:
                 out[feature.lower()] = localdict[feature]
-            except:
-                raise Exception('Missing feature "{feature}" in user tagging file: {file}'.format(
+            except Exception as e:
+                logging.error('Missing feature "{feature}" in user tagging file: {file}'.format(
                     feature = feature,
                     file = sfile))
+                raise e
+                
         return out
    
     def __parse_tags (self, txt):

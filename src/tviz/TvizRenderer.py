@@ -160,15 +160,17 @@ class TvizRenderer:
 
         try:
             templatetxt = open(template_file(filename), 'r').read()
-        except:
-            raise Exception("HtmlRenderer: Error reading: " + filename)
+        except Exception as e:
+            logging.error("HtmlRenderer: Error reading: " + filename)
+            raise e
+        
                     
         try:
             outputhtml = template.render(content= templatetxt, context = context)
             
-        except:
+        except Exception as e:
             logging.error("HtmlRenderer: Error rendering: " + filename)
-            raise 
+            raise e
 
         outfile = html_file('tanda.html')
         

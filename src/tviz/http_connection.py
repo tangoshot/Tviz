@@ -63,16 +63,16 @@ class HttpClient (object):
         # Open Socket
         try:
             socket = urllib.urlopen(command)
-        except:
-            logging.error("Failed response for: " + command)
-            raise
+        except Exception as e:
+            logging.error("Cannot open socket for : " + command)
+            raise e
 
         try:
             output = request.getResponse(socket)
-        except:
-            logging.error("Cannot connect to socket")
-            print "Cannot connect to socket"
-            raise
+        except Exception as e:
+            logging.error("Client Call failed")
+            print "Client Call failed"
+            raise e
         socket.close()
         
         return output
@@ -86,9 +86,7 @@ class HttpRequest (object):
     rawresponse= None
 
     def __init__(self, action, args={}):
-        self._action = action
-        self._args = args
-
+        self.setAction(action, args)
 
     def read(self, stream):
         '''
@@ -98,11 +96,12 @@ class HttpRequest (object):
         of http request.
         '''
         try:
-            data = ElementTree.parse(stream)
+            data = ElementTree.parse(stream, encoding='utf-8')
         except:
             data = stream.read(stream)
-        except:
-            raise
+    
+        return data
+    
     
     def parse(self, data):
         '''
@@ -114,7 +113,6 @@ class HttpRequest (object):
         except:
             return data
 
-
     def __str__(self):
         txt= '''
         *******************************
@@ -122,7 +120,7 @@ class HttpRequest (object):
         *******************************
         {response}
         -------------------------------
-        {encodeQuery}
+        {query}
         
         {rawresponse}
         *******************************
@@ -134,7 +132,12 @@ class HttpRequest (object):
             rawresponse = str(self.rawresponse))
         
         return txt
-      
+   
+   
+    def setAction(self,action, args={}):
+        self._action = action
+        self._args = args
+
     def sendQuery(self, server):
         self.lastcall= server.addr + self.encodeQuery()
         server.call(self.lastcall) 
@@ -143,17 +146,18 @@ class HttpRequest (object):
         logging.debug('STARTING: getting http response')
         try:    
             self.data= self.read(socket)
-        except:
-            logging.error("Cannot read socket: ", socket.error())
+        except Exception as e:
+            logging.error("Cannot read socket ")
             socket.close()
-            raise
+            raise e
 
         socket.close()
         
         try:
             self.response = self.parse(self.data)
-        except:
-            logging.error("Cannot parse data: " + repr(packet_uni))
+        except Exception as e:
+            logging.error("Cannot parse data: " + repr(self.data))
+            raise e
             
         return self.response
         
@@ -164,11 +168,12 @@ class HttpRequest (object):
 
 
 if __name__ == '__main__':
-    c= HttpClient(user= 'mc', pwd= 'mc', port='50001',base='MCWS/v1/')
-    r = HttpRequest('Alive')
-    print c.call(r)
+    client= HttpClient(user= 'mc', pwd= 'mc', port='50001',base='MCWS/v1/')
     
-    r = HttpRequest('Info')
-    print c.call(r)
-
+    requests = [HttpRequest('Alive'), HttpRequest('Playinglist/Info')] 
     
+    for request in requests:
+        print request
+        print client.call(request)
+        print request    
+ 
