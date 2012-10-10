@@ -1,22 +1,22 @@
-INFO 2012-10-10 04:59:05,213 : root : started logging
-DEBUG 2012-10-10 04:59:05,581 : web2py.dal : no pymysql driver
-DEBUG 2012-10-10 04:59:05,584 : web2py.dal : no psycopg2 driver
-DEBUG 2012-10-10 04:59:05,585 : web2py.dal : no cx_Oracle driver
-DEBUG 2012-10-10 04:59:05,588 : web2py.dal : no MSSQL/DB2 driver
-DEBUG 2012-10-10 04:59:05,591 : web2py.dal : no kinterbasdb driver
-DEBUG 2012-10-10 04:59:05,592 : web2py.dal : no Firebird driver
-DEBUG 2012-10-10 04:59:05,595 : web2py.dal : no informixdb driver
-DEBUG 2012-10-10 04:59:05,596 : web2py.dal : no sapdb driver
-DEBUG 2012-10-10 04:59:05,599 : web2py.dal : no cubriddb driver
-DEBUG 2012-10-10 04:59:05,601 : web2py.dal : no zxJDBC driver
-DEBUG 2012-10-10 04:59:05,604 : web2py.dal : no Ingres driver
-DEBUG 2012-10-10 04:59:05,605 : web2py.dal : no couchdb driver
-DEBUG 2012-10-10 04:59:05,608 : web2py.dal : no mongoDB driver
-INFO 2012-10-10 04:59:05,740 : root : Feature Factory: 
+INFO 2012-10-10 05:31:45,345 : root : started logging
+DEBUG 2012-10-10 05:31:45,802 : web2py.dal : no pymysql driver
+DEBUG 2012-10-10 05:31:45,803 : web2py.dal : no psycopg2 driver
+DEBUG 2012-10-10 05:31:45,806 : web2py.dal : no cx_Oracle driver
+DEBUG 2012-10-10 05:31:45,811 : web2py.dal : no MSSQL/DB2 driver
+DEBUG 2012-10-10 05:31:45,813 : web2py.dal : no kinterbasdb driver
+DEBUG 2012-10-10 05:31:45,815 : web2py.dal : no Firebird driver
+DEBUG 2012-10-10 05:31:45,819 : web2py.dal : no informixdb driver
+DEBUG 2012-10-10 05:31:45,822 : web2py.dal : no sapdb driver
+DEBUG 2012-10-10 05:31:45,823 : web2py.dal : no cubriddb driver
+DEBUG 2012-10-10 05:31:45,828 : web2py.dal : no zxJDBC driver
+DEBUG 2012-10-10 05:31:45,831 : web2py.dal : no Ingres driver
+DEBUG 2012-10-10 05:31:45,834 : web2py.dal : no couchdb driver
+DEBUG 2012-10-10 05:31:45,835 : web2py.dal : no mongoDB driver
+INFO 2012-10-10 05:31:46,045 : root : Feature Factory: 
 index2features : set(['NAME', 'ORCHESTRA', 'GENRE', 'SINGERS', 'ISINSTRUMENTAL', 'ISBREAK'])
 tagnames : ['Genre', 'Singer', 'Orchestra', 'Name', 'Subgroup']
 
-INFO 2012-10-10 04:59:05,740 : root : Options:
+INFO 2012-10-10 05:31:46,046 : root : Options:
 IMAGE_FOLDER : C:/Media/Audio/Music/Released (k)/Tango (k)/Tango images (k)/
 PLAYER : jriver
 PORT : 50001
@@ -25,17 +25,19 @@ PWD : mc
 USER : mc
 index2features : {'PROFILE': <type 'str'>, 'PLAYER': <type 'str'>, 'PWD': <type 'str'>, 'USER': <type 'str'>, 'PORT': <type 'int'>, 'IMAGE_FOLDER': <type 'str'>}
 
-DEBUG 2012-10-10 04:59:06,424 : root : Setting mode: 2
-DEBUG 2012-10-10 04:59:06,426 : root : rendering message: ready
-DEBUG 2012-10-10 04:59:09,213 : root : Setting mode: 1
-INFO 2012-10-10 04:59:09,214 : root : Starting Tviz from tkui
-DEBUG 2012-10-10 04:59:10,229 : root : STARTING: getting http response
-INFO 2012-10-10 04:59:10,230 : root : Reading Playlist (1.02 seconds)
-DEBUG 2012-10-10 04:59:11,255 : root : STARTING: getting http response
-INFO 2012-10-10 04:59:11,299 : root : Reading Tags (1.07 seconds)
-INFO 2012-10-10 04:59:14,473 : root : Starting Tviz from tkui
-DEBUG 2012-10-10 04:59:15,473 : root : STARTING: getting http response
-INFO 2012-10-10 04:59:15,473 : root : Reading Playlist (1.00 seconds)
-DEBUG 2012-10-10 04:59:17,921 : root : Setting mode: 2
-DEBUG 2012-10-10 04:59:17,923 : root : rendering message: bla bla
-INFO 2012-10-10 04:59:22,269 : root : Quiting Tviz from Tkui
+DEBUG 2012-10-10 05:31:46,904 : root : Setting mode: 2
+DEBUG 2012-10-10 05:31:46,904 : root : rendering message: ready
+DEBUG 2012-10-10 05:31:51,742 : root : Setting mode: 1
+INFO 2012-10-10 05:31:51,742 : root : Starting Tviz from tkui
+ERROR 2012-10-10 05:31:53,750 : root : Cannot open socket for : http://mc:mc@localhost:50001/MCWS/v1/Playback/Playlist?Action=Serialize
+ERROR 2012-10-10 05:31:53,750 : root : Bad Tviz response: [Errno socket error] [Errno 10061] No connection could be made because the target machine actively refused it
+INFO 2012-10-10 05:31:53,750 : root : Entering Termination Mode
+DEBUG 2012-10-10 05:31:53,750 : root : Setting mode: 2
+DEBUG 2012-10-10 05:31:53,750 : root : rendering message:  
+DEBUG 2012-10-10 05:31:57,141 : root : Setting mode: 1
+INFO 2012-10-10 05:31:57,141 : root : Starting Tviz from tkui
+ERROR 2012-10-10 05:31:59,141 : root : Cannot open socket for : http://mc:mc@localhost:50001/MCWS/v1/Playback/Playlist?Action=Serialize
+ERROR 2012-10-10 05:31:59,141 : root : Bad Tviz response: [Errno socket error] [Errno 10061] No connection could be made because the target machine actively refused it
+INFO 2012-10-10 05:31:59,141 : root : Entering Termination Mode
+DEBUG 2012-10-10 05:31:59,141 : root : Setting mode: 2
+DEBUG 2012-10-10 05:31:59,142 : root : rendering message:  

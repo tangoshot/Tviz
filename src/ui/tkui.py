@@ -97,9 +97,10 @@ class TvizUI:
         try:
             self.tviz.run_one()
         except Exception as e:
+            print "TVIZ TERMINATED"
             logging.error('Bad Tviz response: ' + str(e))
             logging.info('Entering Termination Mode')
-            self.send_message('Crash')
+            self.send_message(' ')
         
     def configure(self):
         logging.info("Will Enter into Config mode")
