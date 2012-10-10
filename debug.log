@@ -1,22 +1,22 @@
-INFO 2012-10-09 09:01:52,500 : root : started logging
-DEBUG 2012-10-09 09:01:52,907 : web2py.dal : no pymysql driver
-DEBUG 2012-10-09 09:01:52,910 : web2py.dal : no psycopg2 driver
-DEBUG 2012-10-09 09:01:52,913 : web2py.dal : no cx_Oracle driver
-DEBUG 2012-10-09 09:01:52,914 : web2py.dal : no MSSQL/DB2 driver
-DEBUG 2012-10-09 09:01:52,917 : web2py.dal : no kinterbasdb driver
-DEBUG 2012-10-09 09:01:52,921 : web2py.dal : no Firebird driver
-DEBUG 2012-10-09 09:01:52,923 : web2py.dal : no informixdb driver
-DEBUG 2012-10-09 09:01:52,926 : web2py.dal : no sapdb driver
-DEBUG 2012-10-09 09:01:52,927 : web2py.dal : no cubriddb driver
-DEBUG 2012-10-09 09:01:52,930 : web2py.dal : no zxJDBC driver
-DEBUG 2012-10-09 09:01:52,933 : web2py.dal : no Ingres driver
-DEBUG 2012-10-09 09:01:52,936 : web2py.dal : no couchdb driver
-DEBUG 2012-10-09 09:01:52,940 : web2py.dal : no mongoDB driver
-INFO 2012-10-09 09:01:52,960 : root : Feature Factory: 
+INFO 2012-10-10 04:59:05,213 : root : started logging
+DEBUG 2012-10-10 04:59:05,581 : web2py.dal : no pymysql driver
+DEBUG 2012-10-10 04:59:05,584 : web2py.dal : no psycopg2 driver
+DEBUG 2012-10-10 04:59:05,585 : web2py.dal : no cx_Oracle driver
+DEBUG 2012-10-10 04:59:05,588 : web2py.dal : no MSSQL/DB2 driver
+DEBUG 2012-10-10 04:59:05,591 : web2py.dal : no kinterbasdb driver
+DEBUG 2012-10-10 04:59:05,592 : web2py.dal : no Firebird driver
+DEBUG 2012-10-10 04:59:05,595 : web2py.dal : no informixdb driver
+DEBUG 2012-10-10 04:59:05,596 : web2py.dal : no sapdb driver
+DEBUG 2012-10-10 04:59:05,599 : web2py.dal : no cubriddb driver
+DEBUG 2012-10-10 04:59:05,601 : web2py.dal : no zxJDBC driver
+DEBUG 2012-10-10 04:59:05,604 : web2py.dal : no Ingres driver
+DEBUG 2012-10-10 04:59:05,605 : web2py.dal : no couchdb driver
+DEBUG 2012-10-10 04:59:05,608 : web2py.dal : no mongoDB driver
+INFO 2012-10-10 04:59:05,740 : root : Feature Factory: 
 index2features : set(['NAME', 'ORCHESTRA', 'GENRE', 'SINGERS', 'ISINSTRUMENTAL', 'ISBREAK'])
 tagnames : ['Genre', 'Singer', 'Orchestra', 'Name', 'Subgroup']
 
-INFO 2012-10-09 09:01:52,960 : root : Options:
+INFO 2012-10-10 04:59:05,740 : root : Options:
 IMAGE_FOLDER : C:/Media/Audio/Music/Released (k)/Tango (k)/Tango images (k)/
 PLAYER : jriver
 PORT : 50001
@@ -25,43 +25,17 @@ PWD : mc
 USER : mc
 index2features : {'PROFILE': <type 'str'>, 'PLAYER': <type 'str'>, 'PWD': <type 'str'>, 'USER': <type 'str'>, 'PORT': <type 'int'>, 'IMAGE_FOLDER': <type 'str'>}
 
-DEBUG 2012-10-09 09:01:54,766 : root : STARTING: getting http response
-INFO 2012-10-09 09:01:54,767 : root : Reading Playlist (1.06 seconds)
-DEBUG 2012-10-09 09:01:55,838 : root : STARTING: getting http response
-INFO 2012-10-09 09:01:55,888 : root : Reading Tags (1.12 seconds)
-DEBUG 2012-10-09 09:02:00,069 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:00,069 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:04,187 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:04,187 : root : Reading Playlist (1.11 seconds)
-DEBUG 2012-10-09 09:02:08,244 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:08,244 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:12,302 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:12,302 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:16,362 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:16,362 : root : Reading Playlist (1.06 seconds)
-DEBUG 2012-10-09 09:02:20,549 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:20,552 : root : Reading Playlist (1.18 seconds)
-DEBUG 2012-10-09 09:02:24,884 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:24,884 : root : Reading Playlist (1.17 seconds)
-DEBUG 2012-10-09 09:02:29,161 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:29,161 : root : Reading Playlist (1.14 seconds)
-DEBUG 2012-10-09 09:02:33,450 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:33,450 : root : Reading Playlist (1.06 seconds)
-DEBUG 2012-10-09 09:02:37,512 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:37,512 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:41,698 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:41,700 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:45,760 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:45,760 : root : Reading Playlist (1.06 seconds)
-DEBUG 2012-10-09 09:02:49,816 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:49,818 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:53,875 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:53,875 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:02:57,934 : root : STARTING: getting http response
-INFO 2012-10-09 09:02:57,934 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:03:01,997 : root : STARTING: getting http response
-INFO 2012-10-09 09:03:01,997 : root : Reading Playlist (1.06 seconds)
-DEBUG 2012-10-09 09:03:06,055 : root : STARTING: getting http response
-INFO 2012-10-09 09:03:06,056 : root : Reading Playlist (1.05 seconds)
-DEBUG 2012-10-09 09:03:10,118 : root : STARTING: getting http response
-INFO 2012-10-09 09:03:10,118 : root : Reading Playlist (1.06 seconds)
+DEBUG 2012-10-10 04:59:06,424 : root : Setting mode: 2
+DEBUG 2012-10-10 04:59:06,426 : root : rendering message: ready
+DEBUG 2012-10-10 04:59:09,213 : root : Setting mode: 1
+INFO 2012-10-10 04:59:09,214 : root : Starting Tviz from tkui
+DEBUG 2012-10-10 04:59:10,229 : root : STARTING: getting http response
+INFO 2012-10-10 04:59:10,230 : root : Reading Playlist (1.02 seconds)
+DEBUG 2012-10-10 04:59:11,255 : root : STARTING: getting http response
+INFO 2012-10-10 04:59:11,299 : root : Reading Tags (1.07 seconds)
+INFO 2012-10-10 04:59:14,473 : root : Starting Tviz from tkui
+DEBUG 2012-10-10 04:59:15,473 : root : STARTING: getting http response
+INFO 2012-10-10 04:59:15,473 : root : Reading Playlist (1.00 seconds)
+DEBUG 2012-10-10 04:59:17,921 : root : Setting mode: 2
+DEBUG 2012-10-10 04:59:17,923 : root : rendering message: bla bla
+INFO 2012-10-10 04:59:22,269 : root : Quiting Tviz from Tkui

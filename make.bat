@@ -8,7 +8,7 @@ set pythonpath=%pythonpath%;./src
 
 echo %pythonpath%
 
-python C:/CodeBench/xlib/python/pyinstaller-2.0/pyinstaller.py --noupx --onefile --buildpath=build/dist run.py 
+python C:/CodeBench/xlib/python/pyinstaller-2.0/pyinstaller.py --noupx --onefile --buildpath=build/dist RunTviz.py
 
 cp -r -u resources ./dist/resources
 cp -r -u user ./dist/user

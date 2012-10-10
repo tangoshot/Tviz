@@ -1,6 +1,6 @@
 # -*- mode: python -*-
 a = Analysis(['run.py'],
-             pathex=['C:\\CodeBench\\tvizpy'],
+             pathex=['C:\\CodeBench\\tviz'],
              hiddenimports=[],
              hookspath=None)
 pyz = PYZ(a.pure)

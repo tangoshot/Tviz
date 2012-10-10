@@ -105,9 +105,9 @@ class TvizDriver:
 
 
     def run_one(self):
-        # print "xxx RUN MODE: " + str(self.mode)
+        print "xxx RUN MODE: " + str(self.mode)
         # print "xxx MESSAGE: " + self.message
-
+        
         if self.mode == self.TVIZ_MODE_OFF:
            # print "xxx Tviz off. returning control"
            return
@@ -118,10 +118,18 @@ class TvizDriver:
         
         if self.mode == self.TVIZ_MODE_TANDA:
             self.run_one_show_tanda()
+                
 
-    def run_one_show_message(self):
-            logging.debug("rendering message: " + self.message) 
-            self.renderMessage(self.message)
+
+
+    def run_one_show_message(self, messageparam=None):
+            if messageparam:
+                message = messageparam
+            else:
+                message = self.message
+        
+            logging.debug("rendering message: " + message) 
+            self.renderMessage(message)
             
     def run_one_show_tanda(self):
         if self.mode == self.TVIZ_MODE_TANDA:
@@ -155,11 +163,9 @@ class TvizDriver:
             self.TVIZ_MODE_OFF,
             self.TVIZ_MODE_MESSAGE,
             self.TVIZ_MODE_TANDA]
-        
         self.mode = mode
 
     def setMessage(self,message):
-        # print "xxx Setting message: " + message
         self.message = message
 
 

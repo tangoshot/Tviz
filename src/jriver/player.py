@@ -3,14 +3,13 @@ Created on Aug 20, 2012
 
 @author: tolga
 '''
-from tviz.playerAPI import Player, PlayingListPacket
+from tviz.playerAPI import PlayerInterface, PlayingListPacket
 from tviz.http_connection import HttpClient
 
 from jriver.client import JriverRequest
 
-class JriverPlayer (Player):
+class JriverPlayer (PlayerInterface):
     tagnames = dict(key = 'Key', filename = 'Filename')
-    keytag = tagnames['key']
 
     base = 'MCWS/v1/'
 
@@ -30,14 +29,13 @@ class JriverPlayer (Player):
         return out
 
     def getPlayinglistTags(self, featuretags):
-        keytag = self.tagnames['key']
         
         request = JriverRequest.PlayingNowList(featuretags)
         tagbaglist = self.call(request)
 
         out = {}
         for tagbag in tagbaglist:
-            key = tagbag[keytag]
+            key = tagbag[self.keytag()]
 
             for tagname in featuretags:
                 if not tagname in tagbag:
@@ -46,16 +44,7 @@ class JriverPlayer (Player):
             out[key] = tagbag
         
         return out
-
-           
-    def tags2features(self, tags):
-        out = {}
-        for featurename in self.tagnames:
-            tagname = self.tagnames[featurename]
-            out[featurename] = tags[tagname]
-        return out
-             
-           
+                    
     def call(self, request):
         self.__client.call(request) 
         
