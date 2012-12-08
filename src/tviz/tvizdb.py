@@ -251,7 +251,7 @@ if __name__ == '__main__':
 
     from tviz.http_connection import HttpClient
     from settings import MySongFeatureFactory
-    from jriver.player import JriverPlayer
+    from jriver.mcws.player import JriverPlayer
 # from tviz.playinglist import McPlayer
    
     player = JriverPlayer(user= 'mc', pwd= 'mc', port='50001')

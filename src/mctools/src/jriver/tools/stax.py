@@ -1,6 +1,6 @@
 from tornado.httpclient import HTTPClient
 from tviz.http_connection import HttpClient
-from jriver.request import JriverRequest
+from jriver.mcws.request import JriverRequest
 TAG_ERROR_COMMENT = 'errorcomments'
 TAG_STACK_TOP = 'Stack Top'
 TAG_IS_PROPOGATED = [

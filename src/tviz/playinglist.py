@@ -1,7 +1,7 @@
 # from tviz.mcws.client import defaultjriver
 import logging
 
-from jriver.request import JriverRequest
+from jriver.mcws.request import JriverRequest
 import time
 from pickle import HIGHEST_PROTOCOL
 
@@ -185,7 +185,7 @@ if __name__ == '__main__':
             'Key',
             'Subgroup']    
 
-    from jriver.player import JriverPlayer
+    from jriver.mcws.player import JriverPlayer
 
     player = JriverPlayer(user= 'mc', pwd= 'mc', port='50001')
     p = Playinglist(player, IMPORTED_TAG_NAMES)

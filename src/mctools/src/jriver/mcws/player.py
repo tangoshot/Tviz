@@ -6,7 +6,7 @@ Created on Aug 20, 2012
 from tviz.playerAPI import PlayerInterface, PlayingListPacket
 from tviz.http_connection import HttpClient
 
-from jriver.request import JriverRequest
+from jriver.mcws.request import JriverRequest
 
 class JriverPlayer (PlayerInterface):
     tagnames = dict(key = 'Key', filename = 'Filename')

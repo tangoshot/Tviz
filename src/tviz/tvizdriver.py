@@ -15,7 +15,7 @@ from tviz.tvizdb import TvizDB, TvizTanda
 from tviz.TvizRenderer import TvizRenderer
 from tviz.image_matching import ImageDb
 
-from jriver.player import JriverPlayer 
+from jriver.mcws.player import JriverPlayer 
 
 
 

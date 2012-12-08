@@ -7,7 +7,7 @@
 #
 import re
 from tviz.http_connection import HttpClient
-from jriver.request import JriverRequest
+from jriver.mcws.request import JriverRequest
 from copy import deepcopy
 from os.path import join, dirname, exists
 from os import makedirs

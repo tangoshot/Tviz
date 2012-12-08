@@ -1,6 +1,6 @@
 from tviz.http_connection import HttpRequest
 
-from jriver.reader import McwsResponseReader, McwsMplReader, McwsSignatureReader,\
+from jriver.mcws.reader import McwsResponseReader, McwsMplReader, McwsSignatureReader,\
     McwsItemValueReader, FieldsItemsReader
 
 
