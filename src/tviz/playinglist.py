@@ -1,7 +1,7 @@
 # from tviz.mcws.client import defaultjriver
 import logging
 
-from jriver.client import JriverRequest
+from jriver.request import JriverRequest
 import time
 from pickle import HIGHEST_PROTOCOL
 

@@ -12,6 +12,9 @@ import urllib2
 import urllib
 from xml.etree.ElementTree import ElementTree
 
+def urlencode_plus(dict):
+    return urllib.urlencode(dict).replace('+', '%20')
+    
 
 class HttpClient (object):
     '''
@@ -79,11 +82,11 @@ class HttpClient (object):
 
 class HttpRequest (object):
 
-    _action= None
-    _args= None
-    lastcall= None
-    response= None
-    rawresponse= None
+#    _action= None
+#    _args= None
+#    lastcall= None
+#    response= None
+#    rawresponse= None
 
     def __init__(self, action, args={}):
         self.setAction(action, args)
@@ -162,7 +165,7 @@ class HttpRequest (object):
         return self.response
         
     def encodeQuery(self):
-        params = urllib.urlencode(self._args) if self._args else None
+        params = urlencode_plus(self._args) if self._args else None
         
         return  self._action + ('?'+ params if params else '') 
 

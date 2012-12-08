@@ -105,7 +105,7 @@ class TvizDriver:
 
 
     def run_one(self):
-        print "xxx RUN MODE: " + str(self.mode)
+        # print "xxx RUN MODE: " + str(self.mode)
         # print "xxx MESSAGE: " + self.message
         
         if self.mode == self.TVIZ_MODE_OFF:

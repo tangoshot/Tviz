@@ -53,7 +53,8 @@ class McwsResponseReader (XmlReader):
         try:
             if response.attrib.get("Status")=="OK":
                 out['status']= True
-                out.update(self.parse_response(response))
+                data = self.parse_response(response)
+                out.update(data)
                 
             elif response.attrib.get("Status")=="Failure":
                 out['status']= False
@@ -103,9 +104,18 @@ class FieldsItemsReader(McwsResponseReader):
         for item in tree.findall('Item'):
             itemd = {}
             for field in item.findall('Field'):
-                itemd[field.attrib["Name"]] = field.text
+                try:
+                    name = field.attrib['Name']
+                    value = field.text
+                    # print "xxx: name: ", name, "value: ", value
+                except e:
+                    logging.error('Error parsing Item: \n' + ET.dump(item))
+                    raise e
+
+                itemd[name] = value
+            
             itemlist.append(itemd)
-        return itemlist
+        return {'playlists': itemlist}
 
 
 class McwsMplReader(XmlReader):
